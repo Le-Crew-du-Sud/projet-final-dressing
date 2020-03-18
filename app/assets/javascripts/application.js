@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require js/active.js
 //= require js/bootstrap.min.js
 //= require js/classy-nav.min.js
