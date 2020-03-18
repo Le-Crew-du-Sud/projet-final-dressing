@@ -73,3 +73,5 @@ gem 'dotenv-rails'
 gem 'devise'
 gem 'stripe'
 gem "aws-sdk-s3", require: false
+gem 'jquery-rails'
+gem 'wow-rails'
