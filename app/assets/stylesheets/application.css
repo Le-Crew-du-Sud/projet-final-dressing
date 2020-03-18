@@ -12,4 +12,12 @@
  *
  *= require_tree .
  *= require_self
+ *= require css/animate.css
+ *= require css/bootstrap.min.css
+ *= require css/classy-nav.min.css
+ *= require css/core-style.css
+ *= require css/jquery-ui.min.css
+ *= require css/manific-popup.css
+ *= require css/nice-select.css
+  *= require css/owl.carousel.css
  */
