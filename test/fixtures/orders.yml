@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  attire_id: 1
+  price: 1.5
+  stripe_id: 1
+  order_date: 2020-03-18 16:51:01
+
+two:
+  user_id: 1
+  attire_id: 1
+  price: 1.5
+  stripe_id: 1
+  order_date: 2020-03-18 16:51:01

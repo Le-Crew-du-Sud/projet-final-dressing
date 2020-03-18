@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lender: MyString
+  borrower: MyString
+  attire_id: 1
+  start_date: 2020-03-18 16:50:40
+  duration: 1
+
+two:
+  lender: MyString
+  borrower: MyString
+  attire_id: 1
+  start_date: 2020-03-18 16:50:40
+  duration: 1
