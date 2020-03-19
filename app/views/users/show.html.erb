@@ -1,0 +1,38 @@
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="checkout_details_area mt-50 clearfix">
+          <div class="cart-page-heading mb-30">
+
+            <% if user_signed_in? && current_user.is_admin == true %>
+              <div class="cart-page-heading mb-30">
+                <h5>Ton espace admin</h5>
+              </div>
+            <% else %>
+              <div class="cart-page-heading mb-30">
+                <h5>Ton profil</h5>
+              </div>
+            <% end %>
+
+            <div>
+              <p>Prénom :
+                <%= current_user.first_name %></p>
+              <p>Nom :
+                <%= current_user.last_name %></p>
+              <p>Email :
+                <%= current_user.email %></p>
+              <p>Compte créé le:
+                <%= current_user.created_at %></p>
+
+              <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
