@@ -9,14 +9,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag    'application' %>
-    <%= javascript_include_tag 'application' %>
+
   </head>
 
   <body>
     <%= render 'shared/nav_partial' %>
     <%= yield %>
     <%= render 'shared/footer_partial' %>
-
+    <%= javascript_include_tag 'application' %>
   </body>
 
 </html>
