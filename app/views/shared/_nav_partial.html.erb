@@ -18,7 +18,7 @@
                 <!-- Nav Start -->
                 <div class="classynav">
                     <ul>
-                        <li><a href="#">Shop</a>
+                        <!-- <li><a href="#">Shop</a>
                             <div class="megamenu">
                                 <ul class="single-mega cn-col-4">
                                     <li class="title">Women's Collection</li>
@@ -48,8 +48,8 @@
                                     <%= image_tag('vendor_images/bg-6.jpg') %>
                                 </div>
                             </div>
-                        </li>
-                        <li><a href="#">Pages</a>
+                        </li> -->
+                        <!-- <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="shop.html">Shop</a></li>
@@ -60,11 +60,14 @@
                                 <li><a href="regular-page.html">Regular Page</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
-                        </li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        </li> -->
+                        <!-- <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li> -->
 
                         <% if user_signed_in? %>
+                        <li>
+                          <%= link_to 'Éditer mon profil', edit_user_registration_path, class:"btn essence-btn" %>
+                        </li>
                         <li>
                           <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete, class:'nav-item nav-link pr-1' %>
                         </li>
@@ -89,10 +92,6 @@
                     <input type="search" name="search" id="headerSearch" placeholder="Recherche">
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
-            </div>
-            <!-- Favourite Area -->
-            <div class="favourite-area">
-                <%= link_to image_tag('vendor_images/heart.svg'), "#" %>
             </div>
             <!-- User Login Info -->
             <div class="user-login-info">
