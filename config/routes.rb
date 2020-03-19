@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'static_pages/index'
+
 
   devise_for :users
+
+  get 'static_pages/index'
+
+  root :to => 'static_pages#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   ## >> We commented the route below to be allowed to run migrations (also check ./app/views/layout/application.html.erb) << ##
