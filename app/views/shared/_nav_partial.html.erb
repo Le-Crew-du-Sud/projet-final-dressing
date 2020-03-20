@@ -22,7 +22,7 @@
 
                         <% if user_signed_in? %>
                         <li>
-                            <%= link_to 'Ajouter un vêtement',  new_attire_path, class:'nav-item nav-link pr-1' %>
+                            <%= link_to 'Ajouter un vêtement', attires_new_path, class:'nav-item nav-link pr-1' %>
                         </li>
                         <li>
                           <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete, class:'nav-item nav-link pr-1' %>
