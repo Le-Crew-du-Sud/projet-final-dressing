@@ -46,10 +46,14 @@
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
+
+            <% if user_signed_in? %>
             <!-- User Login Info -->
             <div class="user-login-info">
                 <%= link_to image_tag('vendor_images/user.svg'), user_path(current_user.id) %>
             </div>
+            <% end %>
+
             <!-- Cart Area -->
             <div class="cart-area">
                   <%= link_to image_tag('vendor_images/bag.svg', id:"essenceCartBtn"), "#" %><span>3</span>
