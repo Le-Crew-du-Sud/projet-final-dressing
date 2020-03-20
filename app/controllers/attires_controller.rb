@@ -41,7 +41,6 @@ class AttiresController < ApplicationController
     @situation_array = Situation.all.map { |situation| [situation.scope, situation.id] }
     @condition_array = Condition.all.map { |condition| [condition.state, condition.id] }
     @brand_array = Brand.all.map { |brand| [brand.trademark, brand.id] }
-    #@owner_array = Owner.all.map { |owner| [owner.name, owner.id] }
   end
 
   def destroy
