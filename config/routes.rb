@@ -2,18 +2,19 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  # #source: https://github.com/heartcombo/devise/wiki/OmniAuth:-Overview#logout-links
-  # devise_scope :user do
-  #   delete 'users/sign_out', :to => 'devise/sessions#destroy', as: :destroy_user_session
-  # end
 
-  root to: 'static_pages#index'
 
-  resources :users, only: [:show]
+
+  root :to => 'static_pages#index'
+  get 'search', to:"users#search"
 
   resources :users, only: [:edit, :show]
+  
   resources :attires do
     resources :itempicture, only: [:create, :destroy]
   end
 
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  ## >> We commented the route below to be allowed to run migrations (also check ./app/views/layout/application.html.erb) << ##
+  # root to: "home#index"
 end
