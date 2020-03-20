@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
 
 
+  get 'attires/index'
+  get 'attires/create'
+  get 'attires/new'
+  post 'attires/create'
   devise_for :users
 
   get 'static_pages/index'
