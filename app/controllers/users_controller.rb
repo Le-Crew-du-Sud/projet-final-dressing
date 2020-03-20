@@ -4,11 +4,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def index
-    @users = User.all
-    redirect_to index_path
-  end
 
+
+
+
+  def index
+  redirect_to index_path
+  end
 
 
   def cu_admin
