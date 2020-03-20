@@ -4,7 +4,7 @@ class AttiresController < ApplicationController
 
   def create
     puts params[:title], params[:description]
-    @attire = Attire.new(title: params[:title], description: params[:description], price: params[:price], category_id: params[:category_id], size_id: params[:size_id], colour_id: params[:colour_id], fabric_id: params[:fabric_id], situation_id: params[:situation_id], condition_id: params[:condition_id], brand_id: params[:brand_id], owner_id: params[:owner_id])
+    @attire = Attire.new(title: params[:title], description: params[:description], price: params[:price], category_id: params[:category_id], size_id: params[:size_id], colour_id: params[:colour_id], fabric_id: params[:fabric_id], situation_id: params[:situation_id], condition_id: params[:condition_id], brand_id: params[:brand_id], owner_id: current_user.id)
     if @attire.save
       puts "Un vêtement a été ajouté"
       flash[:notice] = "Un vêtement a été ajouté."
@@ -32,7 +32,7 @@ class AttiresController < ApplicationController
       render :edit
     end
   end
-  
+
   def new
     @category_array = Category.all.map { |category| [category.kind, category.id] }
     @size_array = Size.all.map { |size| [size.measure, size.id] }
