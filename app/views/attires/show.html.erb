@@ -1,0 +1,28 @@
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="checkout_details_area mt-50 clearfix">
+          <div class="col-12 mb-3">
+
+            <h5 class="lead"><%= @attire.title %></h5>
+          </div>
+          <div class="col-12 mb-3">
+            <%= @attire.description %>
+          </div>
+
+        </div>
+        <div class="col-md-6 mb-3">
+          <p><%= @attire.price %>€</p>
+        </div>
+        <div class="col-12 mb-3">
+        <%= link_to "Éditer ce vêtement", edit_attire_path(@attire.id), class:"btn essence-btn" %>
+        </div>
+        <div class="col-12 mb-3">
+          <%= link_to "Supprimer ce vêtement", attire_path(@attire.id), class:"btn essence-btn", data:{method: "DELETE"} %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
