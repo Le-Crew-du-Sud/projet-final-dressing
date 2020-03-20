@@ -13,4 +13,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
+  # to be included on Merge (ActiveStorage)
+  # resources :attires do
+  #   resources :itempicture, only: [:create, :destroy]
+  # end
+
 end
