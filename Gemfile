@@ -75,3 +75,11 @@ gem 'stripe'
 gem "aws-sdk-s3", require: false
 gem 'jquery-rails'
 gem 'wow-rails'
+## Omniauth
+gem 'therubyracer'
+gem 'omniauth'
+#gem 'omniauth-digitalocean'
+#gem 'omniauth-twitter'
+#gem 'omniauth-amazon'
+#gem 'omniauth-google'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'

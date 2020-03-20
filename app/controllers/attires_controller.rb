@@ -17,6 +17,9 @@ class AttiresController < ApplicationController
   end
   def show
     @attire = Attire.find(params[:id])
+    #### / pour l'ActiveStorage /
+    # @attire = Attire.with_attached_itempicture.find(params[:id])
+    #### / end /
   end
 
   def edit
@@ -48,7 +51,5 @@ class AttiresController < ApplicationController
     @attire.destroy
     redirect_to user_path(current_user.id)
   end
-
-
 
 end
