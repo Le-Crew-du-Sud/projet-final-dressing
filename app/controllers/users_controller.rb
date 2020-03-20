@@ -5,14 +5,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @Users = User.all
+    @users = User.all
     redirect_to index_path
   end
 
   def search
-    @users = User.all
-    @users = @users.where("first_name LIKE ?", params[:q])
-
+    @user = User.where('first_name LIKE ?', "%" + params[:q] + "%") && User.where('last_name LIKE ?', "%" + params[:q] + "%") && User.where('email LIKE ?', "%" + params[:q] + "%")
   end
 
   def cu_admin
