@@ -11,12 +11,12 @@
           <%= render "devise/shared/error_messages", resource: resource %>
           <div class="row">
             <div class="col-md-6 mb-3">
-              <%= f.label :Prénom %><br/>
+              <%= f.label "Prénom" %><br/>
               <%= f.text_field :first_name, autofocus: true, autocomplete: "firts_name", class:"form-control" %>
             </div>
 
             <div class="col-md-6 mb-3">
-              <%= f.label :Nom %><br/>
+              <%= f.label "Nom" %><br/>
               <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class:"form-control" %>
             </div>
             <div class="col-12 mb-3">
@@ -25,7 +25,7 @@
             </div>
 
             <div class="col-12 mb-3">
-              <%= f.label :Description %><br/><br>
+              <%= f.label "Description" %><br/><br>
               <%= f.text_area :about_me, autofocus: true, autocomplete: "about_me", class:"form-control" %>
             </div>
 
@@ -35,7 +35,7 @@
             <% end %>
 
             <div class="col-md-6 mb-4">
-              <%= f.label :Mot_de_passe %>
+              <%= f.label "Mot de passe" %>
               <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
               <i class="small">
                 (laisser vide si vous ne voulez pas le changer)</i>
@@ -46,12 +46,12 @@
             </div>
 
             <div class="col-md-6 mb-4">
-              <%= f.label :Confirmation_du_mot_de_passe %><br/>
+              <%= f.label "Confirmation du mot de passe" %><br/>
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
             </div>
 
             <div class="col-12 mb-3">
-              <%= f.label :mot_de_passe_actuel %> <i>(Tape ton mot de passe actuel pour valider les modifications)</i><br />
+              <%= f.label "mot de passe actuel" %> <i>(Tape ton mot de passe actuel pour valider les modifications)</i><br />
               <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
             </div>
 
