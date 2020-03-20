@@ -1,8 +1,4 @@
 <h1> Search result</h1>
-<%= render @users%>
-<% User.all.each do |user| %>
-  <tr>
-    <td><%= user.id %></td>
-<td><%= link_to user.first_name, user_path(user.id) %></td>
-<td><%= link_to user.last_name, user_path(user.id) %></td>
-<% end %>
+<% puts "*******************".red %>
+<% puts @users %>
+<%= render @users %>

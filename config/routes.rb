@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'static_pages/index'
 
   root :to => 'static_pages#index'
+  get 'search', to:"users#search"
 
   resources :users, only: [:edit, :show]
   resources :attires
@@ -16,4 +17,3 @@ Rails.application.routes.draw do
   ## >> We commented the route below to be allowed to run migrations (also check ./app/views/layout/application.html.erb) << ##
   # root to: "home#index"
 end
- 
