@@ -6,16 +6,16 @@
           <div class="cart-page-heading mb-30">
 
             <% if user_signed_in? && current_user.is_admin == true %>
-              <div class="cart-page-heading mb-30">
+              <div class="col-12 mb-30">
                 <h5>Ton espace admin</h5>
               </div>
             <% else %>
-              <div class="cart-page-heading mb-30">
+              <div class="col-12 mb-30">
                 <h5>Ton profil</h5>
               </div>
             <% end %>
 
-            <div>
+            <div class="col-12 mb-50">
               <p>Prénom :
                 <%= current_user.first_name %></p>
               <p>Nom :
@@ -27,6 +27,30 @@
 
               <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
 
+            </div>
+
+            <div class="col-12">
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Produits</th>
+                    <th scope="col">Prix</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <% Attire.all.each do |attire| %>
+                    <tr>
+                      <td><%= attire.id %></td>
+                      <td><%= link_to attire.title, attire_path(attire.id) %></td>
+                      <td><%= link_to attire.price, attire_path(attire.id) %></td>
+                    </tr>
+                  <% end %>
+
+                </tbody>
+              </table>
             </div>
 
           </div>
