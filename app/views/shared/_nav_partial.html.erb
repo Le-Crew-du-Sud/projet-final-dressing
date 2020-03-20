@@ -22,6 +22,9 @@
 
                         <% if user_signed_in? %>
                         <li>
+                            <%= link_to 'Ajouter un vêtement',  new_attire_path, class:'nav-item nav-link pr-1' %>
+                        </li>
+                        <li>
                           <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete, class:'nav-item nav-link pr-1' %>
                         </li>
                         <% else %>
@@ -46,15 +49,18 @@
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
+
+            <% if user_signed_in? %>
             <!-- User Login Info -->
             <% if user_signed_in? %>
               <div class="user-login-info">
                 <%= link_to image_tag('vendor_images/user.svg'), user_path(current_user.id) %>
               </div>
             <% end %>
+
             <!-- Cart Area -->
             <div class="cart-area">
-                  <%= link_to image_tag('vendor_images/bag.svg', id:"essenceCartBtn"), "#" %><span>3</span>
+                  <%= link_to image_tag('vendor_images/bag.svg', id:"essenceCartBtn"), "#" %><span></span>
             </div>
         </div>
 
@@ -69,7 +75,7 @@
 
     <!-- Cart Button -->
     <div class="cart-button">
-          <%= link_to image_tag('vendor_images/bag.svg', id:"rightSideCart"), "#" %><span>3</span>
+          <%= link_to image_tag('vendor_images/bag.svg', id:"rightSideCart"), "#" %><span></span>
     </div>
 
     <div class="cart-content d-flex">

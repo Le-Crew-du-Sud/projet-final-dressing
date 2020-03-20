@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def configure_devise_parameters
     devise_parameter_sanitizer.permit(:sign_up) {|u| u.permit(:first_name, :last_name, :about_me, :city_id, :email, :password, :password_confirmation)}
-    devise_parameter_sanitizer.permit(:account_update) {|u| u.permit(:first_name, :last_name, :about_me, :city_id, :email, :password, :password_confirmation)}
+    devise_parameter_sanitizer.permit(:account_update) {|u| u.permit(:first_name, :last_name, :about_me, :city_id, :email, :password, :password_confirmation, :current_password)}
   end
 
   #source: https://www.rubydoc.info/github/plataformatec/devise/Devise%2FControllers%2FHelpers:sign_in_and_redirect

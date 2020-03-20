@@ -7,15 +7,13 @@ Rails.application.routes.draw do
   #   delete 'users/sign_out', :to => 'devise/sessions#destroy', as: :destroy_user_session
   # end
 
-  #get 'static_pages/index'
-
   root to: 'static_pages#index'
 
   resources :users, only: [:show]
 
-  # to be included on Merge (ActiveStorage)
-  # resources :attires do
-  #   resources :itempicture, only: [:create, :destroy]
-  # end
+  resources :users, only: [:edit, :show]
+  resources :attires do
+    resources :itempicture, only: [:create, :destroy]
+  end
 
 end
