@@ -18,42 +18,49 @@
             <%= label_tag 'Description' %><br>
             <%= text_area_tag 'description', nil, class: 'form-control' %><br>
           </div>
-          <div class="col-md-6 mb-3">
-            <%= label_tag 'Categorie' %><br>
-            <%= select_tag(:category_id, options_for_select(@category_array))  %><br>
-          </div><br>
-          <div class="col-md-6 mb-3">
-            <%= label_tag 'Taille' %><br>
-            <%= select_tag(:size_id, options_for_select(@size_array))  %><br>
-          </div><br>
-          <div class="col-md-6 mb-3">
-            <%= label_tag 'Couleur' %><br>
-            <%= select_tag(:colour_id, options_for_select(@colour_array))  %><br>
-          </div><br>
-          <div class="col-md-6 mb-3">
-            <%= label_tag 'Matière' %><br>
-            <%= select_tag(:fabric_id, options_for_select(@fabric_array))  %><br>
-          </div><br>
-          <div class="col-md-6 mb-3">
-            <%= label_tag 'Disponibilité' %><br>
-            <%= select_tag(:situation_id, options_for_select(@situation_array))  %><br>
-          </div><br>
-          <div class="col-md-6 mb-3">
-            <%= label_tag 'Etat' %><br>
-            <%= select_tag(:condition_id, options_for_select(@condition_array))  %><br>
-          </div><br>
-          <div class="col-md-6 mb-3">
-            <%= label_tag 'Marque' %><br>
-            <%= select_tag(:brand_id, options_for_select(@brand_array))  %><br>
-          </div><br>
-          <div class="col-md-6 mb-3">
-            <%= label_tag 'Prix' %><br>
-            <%= number_field_tag 'price', nil, class: 'form-control' %><br>
-          </div><br>
+          <div class="row">
+            <div class="col-6">
+              <div class="col-12 mb-3">
+                <%= label_tag 'Categorie' %><br>
+                <%= select_tag(:category_id, options_for_select(@category_array)) %><br>
+              </div><br>
+              <div class="col-12 mb-3">
+                <%= label_tag 'Taille' %><br>
+                <%= select_tag(:size_id, options_for_select(@size_array)) %><br>
+              </div><br>
+              <div class="col-12 mb-3">
+                <%= label_tag 'Couleur' %><br>
+                <%= select_tag(:colour_id, options_for_select(@colour_array)) %><br>
+              </div><br>
+              <div class="col-12 mb-3">
+                <%= label_tag 'Matière' %><br>
+                <%= select_tag(:fabric_id, options_for_select(@fabric_array)) %><br>
+              </div><br></div>
+              <div class="col-6">
+
+              <div class="col-12 mb-3">
+                <%= label_tag 'Disponibilité' %><br>
+                <%= select_tag(:situation_id, options_for_select(@situation_array)) %><br>
+              </div><br>
+              <div class="col-12 mb-3">
+                <%= label_tag 'Etat' %><br>
+                <%= select_tag(:condition_id, options_for_select(@condition_array)) %><br>
+              </div><br>
+              <div class="col-12 mb-3">
+                <%= label_tag 'Marque' %><br>
+                <%= select_tag(:brand_id, options_for_select(@brand_array)) %><br>
+              </div><br>
+              <div class="col-12 mb-3">
+                <%= label_tag 'Prix' %><br>
+                <%= number_field_tag 'price', nil, class: 'form-control' %><br>
+              </div><br>
+            </div>
+          </div>
+
           <div class="col-md-6 mb-3">
             <%= submit_tag 'Ajouter ce vêtement', class: 'btn essence-btn' %>
           </div>
-        <% end %>
+            <% end %>
         </div>
       </div>
     </div>
