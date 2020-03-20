@@ -13,10 +13,7 @@ Rails.application.routes.draw do
   get 'search', to:"users#search"
 
 
-  get 'static_pages/index'
 
-
-  get 'search', to:"users#search"
   resources :users, only: [:edit, :show]
   resources :attires do
     resources :itempicture, only: [:create, :destroy]
