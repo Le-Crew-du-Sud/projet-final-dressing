@@ -7,17 +7,10 @@ class UsersController < ApplicationController
 
 
 
-  def search
-    @user = User.where('first_name LIKE ?', "%" + params[:q] + "%") && User.where('last_name LIKE ?', "%" + params[:q] + "%") && User.where('email LIKE ?', "%" + params[:q] + "%")
-  end
-
-
-
 
   def index
   redirect_to index_path
   end
-
 
 
   def cu_admin
