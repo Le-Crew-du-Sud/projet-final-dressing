@@ -1,0 +1,33 @@
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="checkout_details_area mt-50 clearfix">
+          <div class="cart-page-heading mb-30">
+
+            <h5 class="lead">Ajouter un vêtement à ta garde-robe</h5>
+          </div>
+
+          <%= form_tag url_for(action: 'create'), method: 'post' do %>
+
+          <div class="col-md-6 mb-3">
+            <%= label_tag 'Nom du vêtement' %><br>
+            <%= text_field_tag 'title', nil, class: 'form-control' %><br>
+          </div>
+          <div class="col-12 mb-3">
+            <%= label_tag 'Description' %><br>
+            <%= text_area_tag 'description', nil, class: 'form-control' %><br>
+          </div>
+          <div class="col-md-6 mb-3">
+            <%= label_tag 'Prix' %><br>
+            <%= number_field_tag 'price', nil, class: 'form-control' %><br>
+          </div>
+          <div class="col-md-6 mb-3">
+            <%= submit_tag 'Ajouter ce vêtement', class: 'btn essence-btn' %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
