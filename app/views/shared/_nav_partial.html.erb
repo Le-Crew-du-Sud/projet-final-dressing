@@ -47,9 +47,11 @@
                 </form>
             </div>
             <!-- User Login Info -->
-            <div class="user-login-info">
+            <% if user_signed_in? %>
+              <div class="user-login-info">
                 <%= link_to image_tag('vendor_images/user.svg'), user_path(current_user.id) %>
-            </div>
+              </div>
+            <% end %>
             <!-- Cart Area -->
             <div class="cart-area">
                   <%= link_to image_tag('vendor_images/bag.svg', id:"essenceCartBtn"), "#" %><span>3</span>

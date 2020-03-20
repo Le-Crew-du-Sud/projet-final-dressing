@@ -5,4 +5,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up) {|u| u.permit(:first_name, :last_name, :about_me, :city_id, :email, :password, :password_confirmation)}
     devise_parameter_sanitizer.permit(:account_update) {|u| u.permit(:first_name, :last_name, :about_me, :city_id, :email, :password, :password_confirmation)}
   end
+
+  #source: https://www.rubydoc.info/github/plataformatec/devise/Devise%2FControllers%2FHelpers:sign_in_and_redirect
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || edit_user_registration_path
+  end
 end

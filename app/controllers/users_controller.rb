@@ -4,9 +4,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def index
-    redirect_to index_path
-  end
+  # def index
+  #   redirect_to index_path
+  # end
+
   def cu_admin
     unless current_user.is_admin == true
       flash[:alert] = "Vous n'etes pas l'admin de ce compte."
