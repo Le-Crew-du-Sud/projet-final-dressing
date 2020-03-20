@@ -9,13 +9,14 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#index'
 
-
-  devise_for :users
-
   get 'static_pages/index'
   get 'search', to:"users#search"
 
 
+  get 'static_pages/index'
+
+
+  get 'search', to:"users#search"
   resources :users, only: [:edit, :show]
   resources :attires do
     resources :itempicture, only: [:create, :destroy]
