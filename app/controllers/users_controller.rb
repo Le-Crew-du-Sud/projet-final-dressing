@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   end
 
   def search
-    @user = User.where('first_name LIKE ?', "%" + params[:q] + "%") && User.where('last_name LIKE ?', "%" + params[:q] + "%") && User.where('email LIKE ?', "%" + params[:q] + "%")
+
+     @user = User.where('last_name LIKE ?', "%" + params[:q] + "%")
   end
 
 
