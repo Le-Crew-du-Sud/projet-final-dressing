@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'search', to:"users#search"
 
   resources :users, only: [:edit, :show]
-  
+
   resources :attires do
     resources :itempicture, only: [:create, :destroy]
   end
