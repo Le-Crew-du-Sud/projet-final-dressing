@@ -1,48 +1,26 @@
-<% if search_user_mail.nil?  %>
-  <p><i> Désolé, nous n'avons trouvé personne correspondant à tes critères.</i></p>
-<% else %>
-
-  <table class="table">
-    <thead>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if search_result.any? %>
+      <% search_result.all.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%=link_to user.first_name, user_path(user.id) %></td>
+          <td><%=link_to user.last_name, user_path(user.id) %></td>
+          <td><%=link_to user.email, user_path(user.id) %></td>
+        </tr>
+      <% end %>
+    <% else %>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Prénom</th>
-        <th scope="col">Nom</th>
-        <th scope="col">Email</th>
+        <td colspan="4"><i> Désolé, nous n'avons trouvé personne correspondant à tes critères.</i></td>
       </tr>
-    </thead>
-    <tbody>
-      <% unless search_user_mail.nil? %>
-        <% search_user_mail.all.each do |user| %>
-          <tr>
-            <td><%= user.id %></td>
-            <td><%=link_to user.first_name, user_path(user.id) %></td>
-            <td><%=link_to user.last_name, user_path(user.id) %></td>
-            <td><%=link_to user.email, user_path(user.id) %></td>
-          </tr>
-        <% end %>
-      <% end %>
-      <% unless search_user_first_name.nil? %>
-        <% search_user_first_name.all.each do |user| %>
-          <tr>
-            <td><%= user.id %></td>
-            <td><%=link_to user.first_name, user_path(user.id) %></td>
-            <td><%=link_to user.last_name, user_path(user.id) %></td>
-            <td><%=link_to user.email, user_path(user.id) %></td>
-          </tr>
-        <% end %>
-      <% end %>
-      <% unless search_user_last_name.nil?%>
-        <% search_user_last_name.all.each do |user| %>
-          <tr>
-            <td><%= user.id %></td>
-            <td><%=link_to user.first_name, user_path(user.id) %></td>
-            <td><%=link_to user.last_name, user_path(user.id) %></td>
-            <td><%=link_to user.email, user_path(user.id) %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-
-  <% end %>
+    <% end %>
+  </tbody>
+</table>

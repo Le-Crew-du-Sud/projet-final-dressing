@@ -8,15 +8,13 @@
           </div>
           <div class="col-12 mb-3">
             <p>
-              La fonction de recherche vous permet de retrouver des utilisateurs en cherchant en fonction du nom de famille. (À l'avenir, vous pourrez faire des recherches en fonction du nom, du prénom ou de l'email de la personne que vous cherchez.)
-              PS: Les majuscules doivent être respectées!
+              La fonction de recherche vous permet de retrouver des utilisateurs en cherchant en fonction du nom, du prénom ou de l'email de la personne que vous cherchez.
             </p>
           </div>
           <div class="row">
             <div class="col-12 mb-3">
-              <%= render 'search_partial', search_user_mail: @search_user_mail, search_user_first_name: @search_user_first_name, search_user_last_name: @search_user_last_name %>
+              <%= render 'search_partial', search_result: @search_result %>
             </div>
-
           </div>
         </div>
       </div>

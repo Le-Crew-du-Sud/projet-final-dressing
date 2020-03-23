@@ -12,9 +12,10 @@ class UsersController < ApplicationController
 
   def search
 
-    @search_user_mail = User.where("LOWER(email) LIKE LOWER(?)", "%" + params[:q] + "%")
-    @search_user_first_name = User.where("LOWER(first_name) LIKE LOWER(?)", "%" + params[:q] + "%")
-    @search_user_last_name = User.where("LOWER(last_name) LIKE LOWER(?)", "%" + params[:q] + "%")
+    # @search_user_mail = User.where("LOWER(email) LIKE LOWER(?)", "%" + params[:q] + "%")
+    # @search_user_first_name = User.where("LOWER(first_name) LIKE LOWER(?)", "%" + params[:q] + "%")
+    # @search_user_last_name = User.where("LOWER(last_name) LIKE LOWER(?)", "%" + params[:q] + "%")
+    @search_result = User.where("LOWER(CONCAT_WS(' ',first_name,last_name,email)) LIKE LOWER(?)", "%" + params[:q] + "%")
 
   end
 
