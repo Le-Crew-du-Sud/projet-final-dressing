@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:edit, :show]
 
+  resources :carts, only: [:create, :show, :edit, :destroy]
+
   resources :attires do
     resources :itempicture, only: [:create, :destroy]
   end
