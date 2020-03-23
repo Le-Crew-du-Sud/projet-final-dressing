@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
   def create
-    puts ">>>>>>>>>>>>> #{params[:price]}".red
+    puts ">>>>>>>>>>>>> #{params[:sale_price]}".red
     @cart = Cart.create(
       customer_id: params[:customer_id],
       attire_id: params[:attire_id],
@@ -9,17 +9,7 @@ class CartsController < ApplicationController
       )
     puts ">>>>>> #{@cart.errors.messages}".red
     redirect_back(fallback_location: request.referer)
-  @order = Order.create(
-    first_name: params[:first_name],
-    last_name: params[:last_name],
-    country: params[:country],
-    address: params[:address],
-    postcode: params[:postcode],
-    city: params[:city],
-    province: params[:province],
-    phone_number: params[:phone_number],
-    email: params[:email]
-  )
+
   end
 
   def show
