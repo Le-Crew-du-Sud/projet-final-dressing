@@ -15,6 +15,7 @@ class AttiresController < ApplicationController
       render 'new'
     end
   end
+  
   def show
     @attire = Attire.find(params[:id])
     #### / pour l'ActiveStorage /
