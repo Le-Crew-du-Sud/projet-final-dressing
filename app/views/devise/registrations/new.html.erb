@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <%= f.label "Prénom" %><br/>
-              <%= f.text_field :first_name, autofocus: true, autocomplete: "firts_name", class:"form-control" %>
+              <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class:"form-control" %>
             </div>
             <div class="col-md-6 mb-3">
               <%= f.label "Nom" %><br/>
@@ -31,7 +31,7 @@
               <%= f.text_field :city_id, autofocus: true, class:"form-control" %>
             </div>
             <div class="col-md-6 mb-4">
-              <%= f.label "password" %>
+              <%= f.label "Mot de passe" %>
               <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %>
                   characters minimum)</em>
