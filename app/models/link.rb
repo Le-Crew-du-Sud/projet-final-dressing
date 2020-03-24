@@ -1,6 +1,5 @@
 class Link < ApplicationRecord
 
-  belongs_to :user, as: :linker
-  belongs_to :user, as: :linked
+  belongs_to :user
 
 end

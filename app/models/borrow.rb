@@ -5,6 +5,6 @@ class Borrow < ApplicationRecord
   end
 
   belongs_to :attire
-  belongs_to :user, through: :attire, as: :lender
-  has_one :user, as: :borrower
+  #belongs_to :user, through: :attire
+  has_one :user
 end
