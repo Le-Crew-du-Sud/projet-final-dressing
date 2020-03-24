@@ -43,7 +43,7 @@ Brand.create(trademark: "Zara")
 Colour.create(tint: "Noir")
 Colour.create(tint: "Blanc")
 
-Condition.create(state: "Nouveu")
+Condition.create(state: "Neuf")
 Condition.create(state: "D'Occasion")
 
 Size.create(measure: "Large")
