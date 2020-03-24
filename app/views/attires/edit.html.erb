@@ -2,26 +2,27 @@
   <div class="container">
     <div class="row">
       <div class="cart-page-heading mb-30">
-        <h5>Ajoute un vêtement à ta garde-robe</h5>
+        <h5>Éditer un vêtement</h5>
       </div>
-      <%= form_tag url_for(action: 'create'), method: 'post' do %>
+      <%= form_tag url_for(action: 'update'), method: "patch" do %>
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <div class="row">
         <div class="col-12 mb-3">
-          <%= label_tag 'Nom du vêtement' %><br>
-          <%= text_field_tag 'title', nil, class: 'form-control' %><br>
+          <%= label_tag 'Nom du vêtement' %>
+          <%= text_field_tag 'title', @attire.title, class:"form-control"%>
         </div>
         <div class="col-12 mb-3">
-          <%= label_tag 'Description' %><br>
-          <%= text_area_tag 'description', nil, class: 'form-control' %><br>
+          <%= label_tag 'Description' %>
+          <%= text_area_tag 'description', @attire.description, class:"form-control" %>
         </div>
         <div class="col-3 mb-3">
-          <%= label_tag 'Prix' %><br>
-          <%= number_field_tag 'price', nil, class: 'form-control' %><br>
+          <%= label_tag 'Prix' %>
+          <%= number_field_tag 'price', @attire.price, class:"form-control" %>
         </div><br>
         <div class="col-2 mb-3">
-          <%= label_tag 'Categorie' %><br>
-          <%= select_tag(:category_id, options_for_select(@category_array)) %><br>
-        </div><br>
+          <%= label_tag 'Catégorie' %><br>
+          <%= select_tag(:category_id, options_for_select(@category_array)) %>
+        </div>
         <div class="col-2 mb-3">
           <%= label_tag 'Taille' %><br>
           <%= select_tag(:size_id, options_for_select(@size_array)) %><br>
@@ -47,9 +48,9 @@
           <%= select_tag(:brand_id, options_for_select(@brand_array)) %><br>
         </div><br>
         <div class="col-md-6 mb-3">
-          <%= submit_tag 'Ajouter ce vêtement', class: 'btn essence-btn' %>
+          <%= submit_tag "Modifier", class:"btn essence-btn"%>
         </div>
-      <% end %>
+        <% end %>
       </div>
     </div>
   </div>

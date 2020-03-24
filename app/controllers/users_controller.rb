@@ -2,6 +2,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
+    @attire = Attire.all
+    @attire_by_user = Attire.where(owner_id: current_user)
+    @attire_by_user_to_lend = Attire.where("owner_id = ? AND situation_id = ?", current_user, 4)
+    @attire_by_user_to_sell = Attire.where("owner_id = ? AND situation_id = ?", current_user, 3)
+    
   end
 
 

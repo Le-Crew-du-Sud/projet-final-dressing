@@ -1,19 +1,55 @@
 <div class="checkout_area section-padding-80">
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-6">
-        <div class="checkout_details_area mt-50 clearfix">
-          <div class="cart-page-heading mb-30">
-            <% if user_signed_in? && current_user.is_admin == true %>
-              <div class="col-12 mb-30">
-                <h5>Ton espace admin</h5>
-              </div>
-            <% else %>
-              <div class="col-12 mb-30">
-                <h5>Ton profil</h5>
-              </div>
+      <% if user_signed_in? && current_user.is_admin == true %>
+        <div class="col-12 mb-30">
+          <h5>Ton espace admin</h5>
+        </div>
+      <% else %>
+        <div class="col-12 mb-30">
+          <h5>Ton profil</h5>
+        </div>
+      <% end %>
+
+      <div class="col-12 mb-50">
+        <p>Prénom :
+          <%= current_user.first_name %></p>
+        <p>Nom :
+          <%= current_user.last_name %></p>
+        <p>Email :
+          <%= current_user.email %></p>
+        <p>Compte créé le:
+          <%= current_user.created_at %></p>
+
+        <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
+
+      </div>
+
+      <div class="col-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Ton Cloud Dressing</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Modifier</th>
+              <th scope="col">Supprimer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% count = 1 %>
+            <% @attire_by_user.all.each do |attire| %>
+              <tr>
+                <td><%= count %></td>
+                <td><%= link_to attire.title, attire_path(attire.id) %></td>
+                <td><%= link_to attire.price, attire_path(attire.id) %></td>
+                <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
+                <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+              </tr>
+              <% count += 1 %>
             <% end %>
 
+<<<<<<< HEAD
             <div class="col-12 mb-50">
               <p>Prénom :
                 <%= current_user.first_name %></p>
@@ -51,6 +87,66 @@
             </div>
           </div>
         </div>
+=======
+          </tbody>
+        </table>
+
+        <hr>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Tes vêtements à vendre</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Modifier</th>
+              <th scope="col">Supprimer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% count = 1 %>
+            <% @attire_by_user_to_sell.all.each do |attire| %>
+              <tr>
+                <td><%= count %></td>
+                <td><%= link_to attire.title, attire_path(attire.id) %></td>
+                <td><%= link_to attire.price, attire_path(attire.id) %></td>
+                <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
+                <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+              </tr>
+              <% count += 1 %>
+            <% end %>
+
+          </tbody>
+        </table>
+        <hr>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Tes vêtements à prêter</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Modifier</th>
+              <th scope="col">Supprimer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% count = 1 %>
+            <% @attire_by_user_to_lend.all.each do |attire| %>
+              <tr>
+                <td><%= count %></td>
+                <td><%= link_to attire.title, attire_path(attire.id) %></td>
+                <td><%= link_to attire.price, attire_path(attire.id) %></td>
+                <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
+                <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+              </tr>
+              <% count += 1 %>
+            <% end %>
+
+          </tbody>
+        </table>
+
+>>>>>>> 82092fee49131a425b42bbcc430f5e98fe07ac42
       </div>
     </div>
   </div>
