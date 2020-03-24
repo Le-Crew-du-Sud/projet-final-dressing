@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
 
   #source: https://www.rubydoc.info/github/plataformatec/devise/Devise%2FControllers%2FHelpers:sign_in_and_redirect
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || edit_user_registration_path
+    stored_location_for(resource) || root_path #edit_user_registration_path
   end
 end

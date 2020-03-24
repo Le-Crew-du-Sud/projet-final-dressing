@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :attires, as: :owner, foreign_key: "owner_id"
   has_many :borrows, as: :borrower, foreign_key: "borrower_id"
+  has_many :borrows, as: :lender, foreign_key: "lender_id"
   has_many :links, as: :linker, foreign_key: "linker_id"
   has_many :links, as: :linked, foreign_key: "linked_id"
   has_many :carts, as: :customer, foreign_key: "customer_id"
@@ -20,6 +21,8 @@ class User < ApplicationRecord
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
        user.provider = auth.provider
        user.uid = auth.uid
+       user.first_name = auth.info.name.split.first
+       user.last_name = auth.info.name.split.last
        user.email = auth.info.email
        user.password = Devise.friendly_token[0,20]
      end

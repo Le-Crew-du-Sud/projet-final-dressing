@@ -91,12 +91,8 @@ ActiveRecord::Schema.define(version: 2020_03_23_145339) do
 
   create_table "categories", force: :cascade do |t|
     t.string "kind", default: "", null: false
-    t.bigint "fabric_id"
-    t.bigint "size_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["fabric_id"], name: "index_categories_on_fabric_id"
-    t.index ["size_id"], name: "index_categories_on_size_id"
   end
 
   create_table "cities", force: :cascade do |t|
