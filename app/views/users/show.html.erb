@@ -11,18 +11,20 @@
         </div>
       <% end %>
 
-      <div class="col-12 mb-50">
-        <p>Prénom :
-          <%= current_user.first_name %></p>
-        <p>Nom :
-          <%= current_user.last_name %></p>
-        <p>Email :
-          <%= current_user.email %></p>
-        <p>Compte créé le:
-          <%= current_user.created_at %></p>
+      <div class="col-12 row">
+        <div class="col-3">
+          <div id="user_profile_picture_box">
+            <%= image_tag "vendor_images/profilepic.jpg", alt: "profile_picture", id:"profilepicture" %>
+          </div>
+        </div>
+        <div class="col-9 mb-50">
+            <p> <%= current_user.first_name %> <%= current_user.last_name %></p>
+          <p>Email de contact: <%= current_user.email %></p>
+          <p>Utilisateur depuis le: <%= current_user.created_at %></p>
 
-        <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
+          <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
 
+        </div>
       </div>
 
       <div class="col-12">
