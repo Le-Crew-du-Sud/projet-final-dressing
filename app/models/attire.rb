@@ -9,5 +9,5 @@ class Attire < ApplicationRecord
   belongs_to :colour
   belongs_to :fabric
   belongs_to :size
-  belongs_to :user
+  belongs_to :user, foreign_key: :owner_id
 end

@@ -6,16 +6,18 @@ class AttiresController < ApplicationController
     puts params[:title], params[:description]
     @attire = Attire.new(title: params[:title], description: params[:description], price: params[:price], category_id: params[:category_id], size_id: params[:size_id], colour_id: params[:colour_id], fabric_id: params[:fabric_id], situation_id: params[:situation_id], condition_id: params[:condition_id], brand_id: params[:brand_id], owner_id: current_user.id)
     if @attire.save
+      puts ">>>>>> #{@attire.errors.messages}".red
       puts "Un vêtement a été ajouté"
       flash[:notice] = "Un vêtement a été ajouté."
       redirect_to user_path(current_user.id)
     else
+      puts ">>>>>> #{@attire.errors.messages}".red
       puts "Erreur dans l'enregistrement.Ton produit a été refusé"
       flash[:alert] = "Erreur dans l'enregistrement.Ton produit a été refusé"
       render 'new'
     end
   end
-  
+
   def show
     @attire = Attire.find(params[:id])
     #### / pour l'ActiveStorage /
