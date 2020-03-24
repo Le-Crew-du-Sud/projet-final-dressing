@@ -1,5 +1,6 @@
 class AttiresController < ApplicationController
   def index
+    @attires = Attire.all
   end
 
   def create
