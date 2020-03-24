@@ -13,7 +13,8 @@ class CartsController < ApplicationController
   end
 
   def show
-    @cart = Cart.where(customer_id: current_user.id).to_a
+    @cart = Cart.all
+    # where(customer_id: current_user.id).to_a
   end
 
   def edit
