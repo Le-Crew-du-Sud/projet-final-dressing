@@ -2,8 +2,6 @@
 <div class="checkout_area section-padding-80">
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-6">
-        <div class="checkout_details_area mt-50 clearfix">
           <div class="cart-page-heading mb-30">
             <h5>Inscris-toi pour créer ta garde-robe en ligne!</h5>
           </div>
@@ -42,14 +40,14 @@
               <%= f.label "password confirmation" %><br/>
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
             </div>
-            <div class="col-md-6 mb-4">
+            <div class="col-12 mb-4">
               <%= f.submit "Sign up", class:"btn essence-btn" %>
             </div>
-            <%= render "devise/shared/links" %>
-        </div>
+
+              <%= render "devise/shared/links" %>
+
+          </div>
         <% end %>
-      </div>
-    </div>
   </div>
 </div>
 </div>
