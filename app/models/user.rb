@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[github]
 
+  has_one_attached :avatar
+
   has_many :attires, as: :owner, foreign_key: "owner_id"
   has_many :borrows, as: :borrower, foreign_key: "borrower_id"
   has_many :borrows, as: :lender, foreign_key: "lender_id"
