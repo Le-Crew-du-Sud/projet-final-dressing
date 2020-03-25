@@ -50,8 +50,12 @@ class AttiresController < ApplicationController
     @brand_array = Brand.all.map { |brand| [brand.trademark, brand.id]}
 
       if @attire.update(title: params[:title], description: params[:description], price: params[:price], category_id: params[:category_id], size_id: params[:size_id], colour_id: params[:colour_id], fabric_id: params[:fabric_id], situation_id: params[:situation_id], brand_id: params[:brand_id], condition_id: params[:condition_id])
+      puts "Un vêtement a été édité"
+      flash[:notice] = "Un vêtement a été édité."
       redirect_to @attire
       else
+        puts "Erreur dans l'enregistrement. Ton produit n'a PAS été édité"
+        flash[:alert] = "Erreur dans l'enregistrement. Ton produit n'a PAS été édité"
         render :edit
       end
   end
@@ -69,6 +73,8 @@ class AttiresController < ApplicationController
   def destroy
     @attire = Attire.find(params[:id])
     @attire.destroy
+    puts "Un vêtement a été supprimé"
+    flash[:notice] = "Un vêtement a été supprimé."
     redirect_to user_path(current_user.id)
   end
 
