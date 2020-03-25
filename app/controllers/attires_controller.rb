@@ -20,6 +20,7 @@ class AttiresController < ApplicationController
   end
 
   def show
+    @all_attires = Attire.all
     @attire = Attire.find(params[:id])
     #### / pour l'ActiveStorage /
     # @attire = Attire.with_attached_itempicture.find(params[:id])

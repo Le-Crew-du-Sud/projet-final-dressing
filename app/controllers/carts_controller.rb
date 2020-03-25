@@ -3,18 +3,18 @@ class CartsController < ApplicationController
   def create
     puts ">>>>>>>>>>>>> #{params[:sale_price]}".red
     @cart = Cart.create(
-      customer_id: params[:customer_id],
+      customer_id: current_user.id,
       attire_id: params[:attire_id],
       sale_price: params[:sale_price]
       )
     puts ">>>>>> #{@cart.errors.messages}".red
-    redirect_back(fallback_location: request.referer)
-
+    puts @cart.id
+    redirect_to cart_path(current_user.id)
   end
 
   def show
-    @cart = Cart.all
-    # where(customer_id: current_user.id).to_a
+    @cart = Cart.where(customer_id: params[:id]).to_a
+    puts "#{@cart.inspect}".red
   end
 
   def edit
@@ -25,5 +25,4 @@ class CartsController < ApplicationController
     @cart.destroy
     redirect_to cart_path
   end
-
 end

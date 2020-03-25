@@ -6,9 +6,9 @@
   </head>
   <body>
     <div class="cart-table-area section-padding-100">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-12 ml">
+          <div class="col-12 col-lg-8">
             <div class="cart-title mt-50">
               <h2>Your Shopping Cart</h2>
             </div>
@@ -25,26 +25,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @cart.each do |attire_cart| %>
+                  <% @cart.each do |item_cart| %>
                     <tr>
-
                       <td class="cart_product_desc">
-                        <h5><%= Attire.find(attire_cart.attire_id).title %></h5>
+                        <h5><%= Attire.find(item_cart.attire_id).title %></h5>
                       </td>
                       <td class="price">
-                        <span><%= attire_cart.sale_price %></span>
+                        <span><%= item_cart.sale_price %></span>
                       </td>
                       <td class="qty">
-                        <div class="qty-btn d-flex">
-                          <p><%= attire_cart.quantity %></p>
-                          <span>
-                            <span>
-                              <%= link_to "Effacer", cart_path(attire_cart.id), class:'btn btn-danger', style:'margin-top: auto;', style:'margin-left: 90px ;','data-confirm' =>'Es tu sur ?', 'data-method' => 'DELETE'%>
-
-                            </span>
-
-
-                        </div>
+                              <%= link_to "Effacer", cart_path(item_cart.id), class:'btn btn-danger', style:'margin-top: auto;', style:'margin-left: 90px ;','data-confirm' =>'Es tu sur ?', 'data-method' => 'DELETE'%>
                       </td>
                     </tr>
                   <% end %>
@@ -68,7 +58,7 @@
                   <span>$140.00</span></li>
               </ul>
               <div class="cart-btn mt-100">
-                <a href="cart.html" class="btn essence-btn w-100">Checkout</a>
+                <a href="cart.html" class="btn amado-btn w-100">Checkout</a>
               </div>
             </div>
           </div>

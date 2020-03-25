@@ -4,13 +4,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @attire = Attire.all
-<<<<<<< HEAD
-    @attire_by_user = Attire.where(owner_id: current_user)
-    @attire_by_user_to_lend = Attire.where("owner_id = ? AND situation_id = ?", current_user, 4)
-    @attire_by_user_to_sell = Attire.where("owner_id = ? AND situation_id = ?", current_user, 3)
-    
-  end
-=======
     @all_users = User.all
     @all_cats = Category.all
     @all_brands = Brand.all
@@ -21,13 +14,6 @@ class UsersController < ApplicationController
     @all_orders = Order.all
     @all_situations = Situation.all
     @all_sizes = Size.all
-
-
->>>>>>> 2158fbd11da6d2e8fa96681a1a2d59e8093b6c5d
-
-
-
-
     @attire_by_user = Attire.where(owner_id: current_user)
     @attire_by_user_to_lend = Attire.where("owner_id = ? AND situation_id = ?", current_user, 4)
     @attire_by_user_to_sell = Attire.where("owner_id = ? AND situation_id = ?", current_user, 3)
