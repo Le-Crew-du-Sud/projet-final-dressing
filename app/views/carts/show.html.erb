@@ -1,0 +1,45 @@
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-30">
+        <h2>Panier</h2>
+      </div>
+      <div class="col-12">
+        <table class="table" id="cart_table">
+          <thead>
+            <tr clas="cart_product_desc">
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart.each do |item_cart| %>
+              <tr>
+                <td>
+                  <h5><%= Attire.find(item_cart.attire_id).title %></h5>
+                </td>
+                <td>
+                  <span><%= item_cart.sale_price %>€</span>
+                </td>
+                <td>
+                  <%= link_to "Effacer", cart_path(item_cart.id), class:'btn btn-outline-danger btn-sm', style:'margin-top: auto;','data-method' => 'DELETE'%>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <p>Tu as <%= @cart.length %> objet(s) dans ton panier</p>
+        <% @sum = 0 %>
+        <% @cart.each do |i| %>
+        <% @sum += i.sale_price %>
+        <% end %>
+        <p>Le total de ton panier s'élève à <%= @sum %>€</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ##### Main Content Wrapper End ##### -->

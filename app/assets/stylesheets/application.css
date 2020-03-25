@@ -15,3 +15,18 @@
   *= require css/core-style.css
   *= require style.css
  */
+
+
+ #user_profile_picture_box{
+   border-radius: 2px;
+   width: 150px;
+   height: 150px;
+   margin-left: 15px;
+   margin-top: 12px;
+ }
+
+ #profilepicture{
+   max-width: 150px;
+   border-radius: 5%;
+
+ }

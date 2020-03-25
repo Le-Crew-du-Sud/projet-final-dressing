@@ -22,6 +22,17 @@
         <div class="col-md-6 mb-3">
           <p><%= @attire.price %>€</p>
         </div>
+        <div class="col-6">
+          <% if user_signed_in? %>
+              <%= form_tag(carts_path, method: :create) do %>
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <input type="hidden" name="attire_id" value=<%= @attire.id %>>
+              <input type="hidden" name="customer_id" value=<%= current_user.id %>>
+              <input type="hidden" name="sale_price" value=<%= @attire.price %>>
+              <%= submit_tag "Ajouter au Panier", class: "btn essence-btn mb-3" %>
+              <% end %>
+          <% end %>
+        </div>
         <div class="col-12 mb-3">
         <%= link_to "Éditer ce vêtement", edit_attire_path(@attire.id), class:"btn essence-btn" %>
         </div>
