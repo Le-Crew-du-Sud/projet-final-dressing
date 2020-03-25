@@ -15,6 +15,11 @@
             <% end %>
 
             <div class="col-12 mb-50">
+              <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar.variant(resize: "90x90!").processed, class:"img-responsive" %></p>
+              <% else %>
+                <%= image_tag('vendor_images/user.svg', style:"width:90px; height: auto", class:"img-responsive ") %>
+              <% end %>
               <p>Prénom :
                 <%= current_user.first_name %></p>
               <p>Nom :

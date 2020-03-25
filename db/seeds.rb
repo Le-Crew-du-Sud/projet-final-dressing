@@ -5,6 +5,8 @@ require 'faker'
 puts "Réinitialisation des tables ..."
 User.destroy_all
 print "Users"
+Attire.destroy_all
+print ", Attires"
 City.destroy_all
 print ", Cities"
 Brand.destroy_all

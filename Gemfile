@@ -83,3 +83,5 @@ gem 'omniauth'
 #gem 'omniauth-amazon'
 #gem 'omniauth-google'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+## ActiveStorage companion
+gem "image_processing", "~> 1.2"
