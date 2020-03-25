@@ -3,7 +3,7 @@
     <div class="row">
       <div class="owl-carousel owl-theme col-6 mb-3">
         <% (0...@attire.pictures.count).each do |image| %>
-          <div><%= image_tag(@attire.pictures[image].variant(resize: '300x300!').processed, class:"img-responsive") %></div>
+          <div><%= image_tag(@attire.pictures[image].variant(resize: '300x300').processed, class:"img-responsive") %></div>
         <% end %>
       </div>
           <div class="col-6 mb-3">
