@@ -1,23 +1,20 @@
 <div class="checkout_area section-padding-80">
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-6">
-        <div class="checkout_details_area mt-50 clearfix">
-          <div class="cart-page-heading mb-30">
-            <h5>Résultat de la recherche</h5>
-          </div>
-          <div class="col-12 mb-3">
-            <p>
-              La fonction de recherche vous permet de retrouver des utilisateurs en cherchant en fonction du nom, du prénom ou de l'email de la personne que vous cherchez.
-            </p>
-          </div>
-          <div class="row">
-            <div class="col-12 mb-3">
-              <%= render 'search_partial', search_result: @search_result %>
-            </div>
-          </div>
-        </div>
+
+      <div class="col-12">
+        <h5>Résultat de la recherche</h5>
       </div>
+      <div class="col-6 mb-3">
+        <p>
+          La fonction de recherche vous permet de retrouver des utilisateurs en cherchant en fonction du nom, du prénom ou de l'email de la personne que vous cherchez.
+        </p>
+      </div>
+
+      <div class="col-12" id="search_partial">
+        <%= render 'search_partial', search_result: @search_result %>
+      </div>
+
     </div>
   </div>
 </div>

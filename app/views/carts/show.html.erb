@@ -8,16 +8,21 @@
         <table class="table" id="cart_table">
           <thead>
             <tr clas="cart_product_desc">
+              <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Price</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
+            <% count = 1 %>
             <% @cart.each do |item_cart| %>
               <tr>
                 <td>
-                  <h5><%= Attire.find(item_cart.attire_id).title %></h5>
+                  <p><%= count %></p>
+                </td>
+                <td>
+                  <p><%= Attire.find(item_cart.attire_id).title %></p>
                 </td>
                 <td>
                   <span><%= item_cart.sale_price %>€</span>
@@ -26,12 +31,17 @@
                   <%= link_to "Effacer", cart_path(item_cart.id), class:'btn btn-outline-danger btn-sm', style:'margin-top: auto;','data-method' => 'DELETE'%>
                 </td>
               </tr>
+              <% count +=1 %>
             <% end %>
           </tbody>
         </table>
       </div>
       <div class="col-6">
-        <p>Tu as <%= @cart.length %> objet(s) dans ton panier</p>
+        <% if @cart.length < 2 %>
+        <p>Tu as <%= @cart.length %> objet dans ton panier</p>
+        <% else %>
+        <p>Tu as <%= @cart.length %> objets dans ton panier</p>
+        <% end %>
         <% @sum = 0 %>
         <% @cart.each do |i| %>
         <% @sum += i.sale_price %>
