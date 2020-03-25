@@ -1,6 +1,9 @@
 <div class="checkout_area section-padding-80">
   <div class="container">
     <div class="row">
+      <% if flash[:notice] %>
+      <div class="alert alert-success col-12" role="alert"><%= flash[:notice] %></div>
+      <% end %>
       <div class="col-12 col-md-6">
         <div class="checkout_details_area mt-50 clearfix">
           <div class="col-12 mb-3">
