@@ -5,7 +5,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :stripe_customer_id, null: false, default: ""
       t.references :customer, index:true
       t.references :attire, index:true
-
       t.timestamps
     end
   end
