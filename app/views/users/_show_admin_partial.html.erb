@@ -50,6 +50,7 @@
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Tous les items en BDD</th>
+        <th scope="col">User ID</th>
         <th scope="col">Prix</th>
         <th scope="col">Modifier</th>
         <th scope="col">Supprimer</th>
@@ -61,6 +62,7 @@
         <tr>
           <td><%= attire.id %></td>
           <td><%= link_to attire.title, attire_path(attire.id) %></td>
+          <td><%= link_to attire.owner_id, attire_path(attire.id) %></td>
           <td><%= link_to attire.price, attire_path(attire.id) %></td>
           <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
           <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
