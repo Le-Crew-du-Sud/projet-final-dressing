@@ -10,7 +10,14 @@
           <div class="col-12 mb-3">
             <%= @attire.description %>
           </div>
-
+          <div class="col-12 mb-3">
+            <% puts "pictures = #{@attire.pictures.count}".red %>
+            <% (0...@attire.pictures.count).each do |image| %>
+              <div style="width:300px; height:300px">
+                <%= image_tag(@attire.pictures[image].variant(resize: '300x300!').processed, class:"img-responsive") %>
+              </div>
+            <% end %>
+          </div>
         </div>
         <div class="col-md-6 mb-3">
           <p><%= @attire.price %>€</p>
