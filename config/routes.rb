@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'search', to:"users#search"
 
-  resources :users, only: [:edit, :show]
+  resources :users, only: [:edit, :show, :destroy, :update]
 
   resources :carts, only: [:create, :show, :edit, :destroy]
 

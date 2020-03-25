@@ -10,6 +10,7 @@
           <h5>Ton profil</h5>
         </div>
       <% end %>
+<<<<<<< HEAD
 
       <div class="col-12 mb-50">
         <p>Prénom :
@@ -86,6 +87,25 @@
               </table>
             </div>
           </div>
+=======
+      <div class="col-12 row">
+        <div class="col-3">
+          <div id="user_profile_picture_box">
+            <%= image_tag "vendor_images/profilepic.jpg", alt: "profile_picture", id:"profilepicture" %>
+          </div>
+        </div>
+        <div class="col-9 mb-50">
+          <p>
+            <%= current_user.first_name %>
+            <%= current_user.last_name %></p>
+          <p>Email de contact:
+            <%= current_user.email %></p>
+          <p>Utilisateur depuis le:
+            <%= current_user.created_at %></p>
+
+          <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
+
+>>>>>>> 2158fbd11da6d2e8fa96681a1a2d59e8093b6c5d
         </div>
 =======
           </tbody>
@@ -148,6 +168,13 @@
 
 >>>>>>> 82092fee49131a425b42bbcc430f5e98fe07ac42
       </div>
+
+      <% if user_signed_in? && current_user.is_admin == true %>
+        <%= render 'show_admin_partial' %>
+      <% else %>
+        <%= render 'show_user_partial' %>
+      <% end %>
+
     </div>
   </div>
 </div>
