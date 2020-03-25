@@ -6,9 +6,9 @@ class ItempictureController < ApplicationController
   #   redirect_to(attire_path(@item))
   # end
   #
-  # def destroy
-  #   @itempicture = ActiveStorage::Attachment.find(params[:id])
-  #   @itempicture.purge
-  #   redirect_back(fallback_location: request.referer)
-  # end
+  def destroy
+    @itempicture = ActiveStorage::Attachment.find(params[:id])
+    @itempicture.purge
+    redirect_back(fallback_location: request.referer)
+  end
 end

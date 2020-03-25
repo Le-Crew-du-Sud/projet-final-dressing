@@ -26,7 +26,10 @@
               <%= f.label "Description" %><br/><br>
               <%= f.text_area :about_me, autofocus: true, autocomplete: "about_me", class:"form-control" %>
             </div>
-
+            <div class="col-12 mb-3">
+              <%= f.label "Description" %><br/>
+              <%= f.file_field :avatar %> </div>
+            </div>
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for:
                 <%= resource.unconfirmed_email %></div>
