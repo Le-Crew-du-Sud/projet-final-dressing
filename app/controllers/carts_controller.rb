@@ -15,6 +15,7 @@ class CartsController < ApplicationController
   def show
     @cart = Cart.where(customer_id: params[:id]).to_a
     puts "#{@cart.inspect}".red
+
   end
 
   def edit
@@ -23,6 +24,6 @@ class CartsController < ApplicationController
   def destroy
     @cart = Cart.find(params[:id])
     @cart.destroy
-    redirect_to cart_path
+    redirect_to cart_path(current_user.id)
   end
 end
