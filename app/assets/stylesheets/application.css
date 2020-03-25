@@ -32,11 +32,27 @@
    border-radius: 5%;
  }
 .essence-btn{
-  background-color: #22a6b3 !important;
+  /* border-radius: 6px 6px / 6px 6px !important; */
+  background-color: #636e72 !important;
+
 }
 .essence-btn:hover {
-  background-color: #7ed6df !important;
+  background-color: #1abc9c !important;
+  border-radius: 9px 9px / 9px 9px !important;
 }
 #search_partial{
   margin-bottom: 200px;
+}
+
+.footer_area{
+  background-color: #16a085  !important;
+}
+
+#scrollUp {
+  background-color: #f6b93b !important;
+  border-radius: 10% !important;
+}
+
+#p_footer{
+  color: black !important;
 }
