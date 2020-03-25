@@ -1,6 +1,12 @@
 <div class="checkout_area section-padding-80">
   <div class="container">
     <div class="row">
+      <% if flash[:notice] %>
+      <div class="alert alert-success col-12" role="alert"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+      <div class="alert alert-danger col-12" role="alert"><%= flash[:alert] %></div>
+      <% end %>
       <% if user_signed_in? && current_user.is_admin == true %>
         <div class="col-12 mb-30">
           <h5>Ton espace admin</h5>
