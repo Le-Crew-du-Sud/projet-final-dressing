@@ -2,27 +2,10 @@
   <div class="container">
     <div class="row">
       <% if flash[:alert] %>
-      <div class="alert alert-danger col-12" role="alert"><%= flash[:alert] %></div>
+        <div class="alert alert-danger col-12" role="alert"><%= flash[:alert] %></div>
       <% end %>
       <div class="cart-page-heading mb-30">
         <h5>Éditer un vêtement</h5>
-      </div>
-      <div class="row row-cols-1">
-        <div class="col">
-          <% (0...@attire.pictures.count).each do |image| %>
-            <div class="col"><%= image_tag(@attire.pictures[image].variant(resize: '100x100!').processed, class:"img-fluid") %><br />
-            <%= link_to 'Effacer', picture_path(@attire.pictures[image]), method: :delete, class:"btn", data: { confirm: 'Es-tu sûr?'} %></div>
-          <% end %>
-        </div>
-      </div>
-      <div class="row row-cols-1">
-        <div class="col">
-          <%= form_tag url_for(action: 'update_pictures'), multipart: true, method: 'patch' do %>
-            <%= hidden_field_tag :id, @attire.id %>
-            <%= file_field_tag 'pictures[]', multiple: true, accept: 'image/png,image/jpeg', class: 'form-control' %>
-            <%= submit_tag 'Ajouter images', class: 'btn' %>
-          <% end %>
-        </div>
       </div>
       <%= form_tag url_for(action: 'update'), method: "patch" do %>
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -67,10 +50,25 @@
           <%= label_tag 'Marque' %><br>
           <%= select_tag(:brand_id, options_for_select(@brand_array)) %><br>
         </div><br>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-12 mb-3">
           <%= submit_tag "Modifier", class:"btn essence-btn"%>
         </div>
-        <% end %>
+          <% end %>
+        <div class="">
+          <%= form_tag url_for(action: 'update_pictures'), multipart: true, method: 'patch' do %>
+          <%= hidden_field_tag :id, @attire.id %>
+          <%= file_field_tag 'pictures[]', multiple: true, accept: 'image/png,image/jpeg'%>
+          <%= submit_tag 'Ajouter images', class: 'btn essence-btn mt-3 col-6' %>
+          <% end %>
+        </div>
+        <div class="d-flex flex-row flex-wrap mt-50">
+          <% (0...@attire.pictures.count).each do |image| %>
+            <div class="ml-3"><%= image_tag(@attire.pictures[image].variant(resize: '200x200!').processed, class:"img-fluid") %><br/>
+
+              <%= link_to 'Effacer', picture_path(@attire.pictures[image]), method: :delete, class:"btn", data: { confirm: 'Es-tu sûr?'} %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

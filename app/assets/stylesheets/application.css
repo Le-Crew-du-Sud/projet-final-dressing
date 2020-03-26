@@ -31,21 +31,23 @@
    max-width: 150px;
    border-radius: 5%;
  }
+
 .essence-btn{
   /* border-radius: 6px 6px / 6px 6px !important; */
   background-color: #636e72 !important;
-
 }
+
 .essence-btn:hover {
-  background-color: #1abc9c !important;
+  background-color: #70a1ff !important;
   border-radius: 9px 9px / 9px 9px !important;
 }
+
 #search_partial{
   margin-bottom: 200px;
 }
 
 .footer_area{
-  background-color: #16a085  !important;
+  background-color: #1e90ff  !important;
 }
 
 #scrollUp {
@@ -57,17 +59,25 @@
   color: black !important;
 }
 
+.rounded-circle{
+  width: 50px !important;
+  max-width: 50px !important;
+}
+
 /* show cart items count */
 .cart_box{
 	position: relative;
 }
+
 .cart_box_image{
 }
+
 .cart_box_text{
 	position: absolute;
 	top: 20px;
   right: 20px;
 }
+
 @media screen and (max-width: 767px){
   .cart_box_text{
     position: absolute;
