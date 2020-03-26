@@ -28,7 +28,7 @@
                   <p><%= Attire.find(item_cart.attire_id).title %></p>
                 </td>
                 <td>
-                  <span><%= item_cart.sale_price %>€</span>
+                  <span><%= number_to_euro(item_cart.sale_price) %></span>
                 </td>
                 <td>
                   <%= link_to "Effacer", cart_path(item_cart.id), class:'btn btn-outline-danger btn-sm', style:'margin-top: auto;','data-method' => 'DELETE'%>
@@ -49,7 +49,7 @@
         <% @cart.each do |i| %>
         <% @sum += i.sale_price %>
         <% end %>
-        <p>Le total de ton panier s'élève à <%= @sum %>€</p>
+        <p>Le total de ton panier s'élève à <%= number_to_euro(@sum) %></p>
       </div>
     </div>
   </div>
