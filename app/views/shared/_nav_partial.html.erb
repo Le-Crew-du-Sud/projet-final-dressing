@@ -60,7 +60,7 @@
         <% puts "CU_avatar #{current_user.avatar.attached?}".red %>
         <% if current_user.avatar.attached? %>
           <div class="user-login-info">
-            <%= link_to image_tag(current_user.avatar.variant(resize: "20x20!").processed, class:"img-circle"), user_path(current_user.id) %>
+            <%= link_to image_tag(current_user.avatar.variant(resize: "20x20!").processed, class:"rounded-circle"), user_path(current_user.id) %>
           </div>
         <% else %>
           <div class="user-login-info">
