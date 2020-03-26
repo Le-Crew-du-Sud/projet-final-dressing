@@ -1,6 +1,9 @@
 <div class="checkout_area section-padding-80">
   <div class="container">
     <div class="row">
+      <% if flash[:notice] %>
+      <div class="alert alert-success col-12" role="alert"><%= flash[:notice] %></div>
+      <% end %>
       <div class="owl-carousel owl-theme col-6 mb-3">
         <% (0...@attire.pictures.count).each do |image| %>
           <div><%= image_tag(@attire.pictures[image].variant(resize: '300x300').processed, class:"img-fluid") %></div>

@@ -1,6 +1,9 @@
 <div class="checkout_area section-padding-80">
   <div class="container">
     <div class="row">
+      <% if flash[:alert] %>
+      <div class="alert alert-danger col-12" role="alert"><%= flash[:alert] %></div>
+      <% end %>
       <div class="cart-page-heading mb-30">
         <h5>Éditer un vêtement</h5>
       </div>

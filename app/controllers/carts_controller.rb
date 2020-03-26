@@ -9,6 +9,8 @@ class CartsController < ApplicationController
       )
     puts ">>>>>> #{@cart.errors.messages}".red
     puts @cart.id
+    puts "Un vêtement a été ajouté au panier"
+    flash[:notice] = "Un vêtement a été ajouté au panier."
     redirect_to cart_path(current_user.id)
   end
 
@@ -24,6 +26,8 @@ class CartsController < ApplicationController
   def destroy
     @cart = Cart.find(params[:id])
     @cart.destroy
+    puts "Un vêtement a été supprimé du panier"
+    flash[:notice] = "Un vêtement a été supprimé du panier."
     redirect_to cart_path(current_user.id)
   end
 end
