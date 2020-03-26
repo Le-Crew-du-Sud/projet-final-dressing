@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root :to => 'static_pages#index'
 
   get 'search', to:"users#search"
-
+  get 'crew', to:"static_pages#crew"
   #patch 'avatars', to:"users#update_avatar", as: 'avatar'
   delete 'avatars/:id', to:"users#del_avatar", as: 'avatar'
 
