@@ -3,6 +3,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @attire = Attire.all
+    @all_users = User.all
+    @all_cats = Category.all
+    @all_brands = Brand.all
+    @all_cities = City.all
+    @all_colours = Colour.all
+    @all_conditions = Condition.all
+    @all_fabrics = Fabric.all
+    @all_orders = Order.all
+    @all_situations = Situation.all
+    @all_sizes = Size.all
     @attire_by_user = @user.attires
     @attire_by_user_to_lend = @user.attires.where(situation_id: 4)
     @attire_by_user_to_sell = @user.attires.where(situation_id: 3)
