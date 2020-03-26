@@ -40,7 +40,8 @@
           <p>Email de contact:
             <%= @user.email %></p>
           <p>Utilisateur depuis le:
-            <%= @user.created_at %></p>
+            <%= @user.created_at.to_time.strftime('%d/%m/%Y %H:%M:%S') %>
+          </p>
 
           <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
 
