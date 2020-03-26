@@ -1,6 +1,9 @@
 <div class="checkout_area section-padding-80">
   <div class="container">
     <div class="d-flex flex-row flex-wrap justify-content-center">
+      <% if flash[:notice] %>
+      <div class="alert alert-success col-12" role="alert"><%= flash[:notice] %></div>
+      <% end %>
       <% @attires.each do |item| %>
         <%= render partial: "card", locals: { item: item }%>
       <% end %>
