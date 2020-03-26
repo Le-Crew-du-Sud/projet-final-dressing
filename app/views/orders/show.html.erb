@@ -59,23 +59,12 @@
 
                         <ul class="order-details-form mb-4">
                             <li><span>Produit</span> <span>Total</span></li>
-<<<<<<< HEAD
                             <% @new_order.each do |item_cart| %>
                               <li><span><%= Attire.find(item_cart.attire_id).title %></span> <span><%= item_cart.sale_price %></span></li>
                             <% end %>
                         </ul>
                         <%= link_to "Confirmer l'achat", new_order_path(current_user.id), class:'btn', style:'margin-top: auto;', class:"btn essence-btn" %>
 
-=======
-                            <% puts ">>>>>>>>>>>>>>>>>>>>" %>
-                            <% puts @cart %>
-                            <% puts "<<<<<<<<<<<<<<<<<<<<" %>
-                            <%= @cart.each do |item_cart| %>
-                            <li><span><%= Attire.find(item_cart.attire_id).title %></span> <span><%= Attire.find(item_cart.attire_id).sale_price %></span></li>
-                            <% end %>
-                        </ul>
-                        <a href="#" class="btn essence-btn">Confirmer l'achat</a>
->>>>>>> f6f6e41bd8ff3d291ac0b9ab2b62702dd0c220e4
                     </div>
                 </div>
             </div>
