@@ -1,0 +1,75 @@
+<div class="checkout_area section-padding-80">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-md-6">
+                    <div class="checkout_details_area mt-50 clearfix">
+
+                        <div class="cart-page-heading mb-30">
+                            <h5>Adresse de livraison</h5>
+                        </div>
+
+                        <form action="#" method="post">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="first_name">Prénom <span>*</span></label>
+                                    <input type="text" class="form-control" id="first_name" value="" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="last_name">Nom de Famille <span>*</span></label>
+                                    <input type="text" class="form-control" id="last_name" value="" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="last_name">Pays <span>*</span></label>
+                                    <input type="text" class="form-control" id="last_name" value="" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="street_address">Adresse <span>*</span></label>
+                                    <input type="text" class="form-control mb-3" id="street_address" value="">
+                                    <input type="text" class="form-control" id="street_address2" value="">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="postcode">Code Postale <span>*</span></label>
+                                    <input type="text" class="form-control" id="postcode" value="">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="city">Ville <span>*</span></label>
+                                    <input type="text" class="form-control" id="city" value="">
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <label for="phone_number">Téléphone<span>*</span></label>
+                                    <input type="number" class="form-control" id="phone_number" min="0" value="">
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label for="email_address">Email<span>*</span></label>
+                                    <input type="email" class="form-control" id="email_address" value="">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                    <div class="order-details-confirmation">
+
+                        <div class="cart-page-heading">
+                            <h5>Le détail de votre commande</h5>
+
+                        </div>
+
+                        <ul class="order-details-form mb-4">
+                            <li><span>Produit</span> <span>Total</span></li>
+                            <% puts ">>>>>>>>>>>>>>>>>>>>" %>
+                            <% puts @cart %>
+                            <% puts "<<<<<<<<<<<<<<<<<<<<" %>
+                            <%= @cart.each do |item_cart| %>
+                            <li><span><%= Attire.find(item_cart.attire_id).title %></span> <span><%= Attire.find(item_cart.attire_id).sale_price %></span></li>
+                            <% end %>
+                        </ul>
+                        <a href="#" class="btn essence-btn">Confirmer l'achat</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Checkout Area End ##### -->
