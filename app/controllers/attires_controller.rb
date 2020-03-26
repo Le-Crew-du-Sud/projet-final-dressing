@@ -1,6 +1,6 @@
 class AttiresController < ApplicationController
   def index
-    @attires = Attire.with_attached_pictures.all
+    @attires = Attire.with_attached_pictures.order(updated_at: :desc).all
   end
 
   def create

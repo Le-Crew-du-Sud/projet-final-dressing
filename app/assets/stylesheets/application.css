@@ -31,15 +31,17 @@
    max-width: 150px;
    border-radius: 5%;
  }
+
 .essence-btn{
   /* border-radius: 6px 6px / 6px 6px !important; */
   background-color: #636e72 !important;
-
 }
+
 .essence-btn:hover {
   background-color: #70a1ff !important;
   border-radius: 9px 9px / 9px 9px !important;
 }
+
 #search_partial{
   margin-bottom: 200px;
 }
@@ -56,10 +58,12 @@
 #p_footer{
   color: black !important;
 }
+
 .rounded-circle{
   width: 50px !important;
   max-width: 50px !important;
 }
+
 .jumbotron{
   background-image: url("vendor_images/bg-index.jpg");
   background-size: cover;
@@ -78,3 +82,27 @@
   text-align: end;
 
 }
+
+
+/* show cart items count */
+.cart_box{
+	position: relative;
+}
+
+.cart_box_image{
+}
+
+.cart_box_text{
+	position: absolute;
+	top: 20px;
+  right: 20px;
+}
+
+@media screen and (max-width: 767px){
+  .cart_box_text{
+    position: absolute;
+    top: 0px;
+    right: 30px;
+  }
+}
+

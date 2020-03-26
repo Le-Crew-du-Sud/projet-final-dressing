@@ -71,8 +71,23 @@
         <!-- Cart Area -->
 
         <div class="cart-area">
-          <%= link_to image_tag('vendor_images/bag.svg'), cart_path(current_user.id) %>
+          <div class="cart_box">
+          	<div class="cart_box_image">
+              <%= link_to cart_path(current_user.id) do %>
+                <%= image_tag('vendor_images/bag.svg') %>
+
+              <% end %>
+          	</div>
+          	<div class="cart_box_text">
+                <% if @cart_number > 0 %>
+                  <span class="badge badge-success">
+                    <%= @cart_number %>
+                  </span>
+                <% end %>
+          	</div>
+          </div>
         </div>
+
       <% end %>
     </div>
 
