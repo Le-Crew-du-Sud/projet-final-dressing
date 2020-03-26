@@ -83,6 +83,16 @@
 
 }
 
+#btn-inscription {
+  background-color: #f6b93b !important;
+}
+
+#btn-inscription:hover{
+  background-color: #f6b93b !important;
+
+}
+
+
 
 /* show cart items count */
 .cart_box{
@@ -105,4 +115,3 @@
     right: 30px;
   }
 }
-
