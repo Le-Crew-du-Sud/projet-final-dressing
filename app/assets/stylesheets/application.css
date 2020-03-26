@@ -60,3 +60,21 @@
   width: 50px !important;
   max-width: 50px !important;
 }
+.jumbotron{
+  background-image: url("vendor_images/bg-index.jpg");
+  background-size: cover;
+  height: 400px;
+}
+
+
+#jumbo-title {
+  color: #f6b93b !important;
+  text-align: end;
+
+}
+
+#jumbo-subtitle {
+  color: white !important;
+  text-align: end;
+
+}
