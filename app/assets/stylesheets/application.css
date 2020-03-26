@@ -68,3 +68,10 @@
 	top: 20px;
   right: 20px;
 }
+@media screen and (max-width: 767px){
+  .cart_box_text{
+    position: absolute;
+    top: 0px;
+    right: 30px;
+  }
+}
