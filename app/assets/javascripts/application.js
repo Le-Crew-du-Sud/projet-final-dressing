@@ -19,3 +19,19 @@
 //= require js/classy-nav.min.js
 //= require js/active.js
 //= require_tree .
+//= require owl.carousel
+
+
+
+$('.owl-carousel').owlCarousel({
+    animateIn: 'fadeIn',
+    animateOut: 'fadeOut',
+    items:1,
+    margin:30,
+    stagePadding:10,
+    smartSpeed:1,
+    dots: true,
+    loop: true,
+    lazyLoad: true,
+    autoHeight: true
+});

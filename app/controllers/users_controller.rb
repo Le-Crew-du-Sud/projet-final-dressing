@@ -30,6 +30,21 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user.id)
   end
 
+  # def update_avatar
+  #   puts "params = #{params[:user][:avatar].inspect}".red
+  #   #if @user.avatar
+  #     @user = params[:user]
+  #     @user.avatar.attach
+  #   #end
+  #   redirect_back(fallback_location: request.referer)
+  # end
+
+  def del_avatar
+    @user = User.with_attached_avatar.find(params[:id])
+    @user.avatar.purge
+    redirect_back(fallback_location: request.referer)
+  end
+
   def search
     # @search_user_mail = User.where("LOWER(email) LIKE LOWER(?)", "%" + params[:q] + "%")
     # @search_user_first_name = User.where("LOWER(first_name) LIKE LOWER(?)", "%" + params[:q] + "%")

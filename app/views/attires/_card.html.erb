@@ -1,14 +1,18 @@
-<div class="col-lg-4 col-sm-6 col-md-6 p-5">
-  <div class="card">
-    <div class="card-img"><%= link_to image_tag('https://via.placeholder.com/190x100', height: "190px", width: "100%"), attire_path(item) %></div>
+
+  <div class="card m-3">
+    <div class="card-img">
+      <% if item.pictures.attached? %>
+        <%= link_to image_tag(item.pictures.first.variant(resize: '300x300!').processed, class:"img-fluid"), attire_path(item) %>
+      <% else %>
+        <%= link_to image_tag('https://via.placeholder.com/300x300', height: "300px", width: "auto", class:"img-fluid"), attire_path(item) %>
+      <% end %>
+    </div>
     <div class="card-body">
-      <h4 class="card-title font-weight-bold text-dark"><%= item.title %></h4>
-      <div class="badge badge-pill badge-light"><%= item.price %> €</div>
-      <div >
-        <%= link_to "+ d'infos", attire_path(item), class: "btn btn-outline-success btn-sm" %>
-        <%= link_to "Ajouter au panier", nil, method: :put, class: "btn btn-success font-weight-bold btn-sm" %>
-        <%= link_to "Emprunter", nil, method: :put, class: "btn btn-success font-weight-bold btn-sm" %>
+      <h6 class="card-title font-weight-bold text-dark"><%= item.title %></h6>
+      <div class="badge badge-pill badge-light mb-2"><h5><%= item.price %> €</h5></div>
+      <div>
+        <%= link_to "Voir l'article!", attire_path(item), class: "btn essence-btn btn-sm" %>
+
       </div>
-    </div> 
+    </div>
   </div>
-</div>

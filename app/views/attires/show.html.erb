@@ -4,38 +4,39 @@
       <% if flash[:notice] %>
       <div class="alert alert-success col-12" role="alert"><%= flash[:notice] %></div>
       <% end %>
-      <div class="col-12 col-md-6">
-        <div class="checkout_details_area mt-50 clearfix">
-          <div class="col-12 mb-3">
-
-            <h5 class="lead"><%= @attire.title %></h5>
-          </div>
-          <div class="col-12 mb-3">
-            <%= @attire.description %>
-          </div>
-
-        </div>
-        <div class="col-md-6 mb-3">
-          <p><%= @attire.price %>€</p>
-        </div>
-        <div class="col-6">
-          <% if user_signed_in? %>
-              <%= form_tag(carts_path, method: :create) do %>
-              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-              <input type="hidden" name="attire_id" value=<%= @attire.id %>>
-              <input type="hidden" name="customer_id" value=<%= current_user.id %>>
-              <input type="hidden" name="sale_price" value=<%= @attire.price %>>
-              <%= submit_tag "Ajouter au Panier", class: "btn essence-btn mb-3" %>
-              <% end %>
-          <% end %>
-        </div>
-        <div class="col-12 mb-3">
-        <%= link_to "Éditer ce vêtement", edit_attire_path(@attire.id), class:"btn essence-btn" %>
-        </div>
-        <div class="col-12 mb-3">
-          <%= link_to "Supprimer ce vêtement", attire_path(@attire.id), class:"btn essence-btn", data:{method: "DELETE"} %>
-        </div>
+      <div class="owl-carousel owl-theme col-6 mb-3">
+        <% (0...@attire.pictures.count).each do |image| %>
+          <div><%= image_tag(@attire.pictures[image].variant(resize: '300x300').processed, class:"img-fluid") %></div>
+        <% end %>
       </div>
+          <div class="col-6 mb-3">
+            <div class="col-12 mb-3">
+              <h5 class="lead"><%= @attire.title %></h5>
+            </div>
+            <div class="col-12 mb-3">
+              <%= @attire.description %>
+            </div>
+            <div class="col-md-6 mb-3">
+            <p><%= @attire.price %>€</p>
+            </div>
+            <div class="col-6">
+            <% if user_signed_in? %>
+                <%= form_tag(carts_path, method: :create) do %>
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <input type="hidden" name="attire_id" value=<%= @attire.id %>>
+                <input type="hidden" name="customer_id" value=<%= current_user.id %>>
+                <input type="hidden" name="sale_price" value=<%= @attire.price %>>
+                <%= submit_tag "Ajouter au Panier", class: "btn essence-btn mb-3" %>
+                <% end %>
+            <% end %>
+            </div>
+            <div class="col-12 mb-3">
+            <%= link_to "Éditer ce vêtement", edit_attire_path(@attire.id), class:"btn essence-btn" %>
+            </div>
+            <div class="col-12 mb-3">
+            <%= link_to "Supprimer ce vêtement", attire_path(@attire.id), class:"btn essence-btn", data:{method: "DELETE"} %>
+            </div>
+          </div>
     </div>
 
   </div>

@@ -28,6 +28,10 @@
               <%= f.label "ville" %><br/>
               <%= f.text_field :city_id, autofocus: true, class:"form-control" %>
             </div>
+            <div class="col-12 mb-3">
+              <%= f.label "avatar" %><br/>
+              <%= f.file_field :avatar, autofocus: true, class:"form-control" %>
+            </div>
             <div class="col-md-6 mb-4">
               <%= f.label "Mot de passe" %>
               <% if @minimum_password_length %>

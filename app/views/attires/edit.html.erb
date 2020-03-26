@@ -7,6 +7,23 @@
       <div class="cart-page-heading mb-30">
         <h5>Éditer un vêtement</h5>
       </div>
+      <div class="row row-cols-1">
+        <div class="col">
+          <% (0...@attire.pictures.count).each do |image| %>
+            <div class="col"><%= image_tag(@attire.pictures[image].variant(resize: '100x100!').processed, class:"img-fluid") %><br />
+            <%= link_to 'Effacer', picture_path(@attire.pictures[image]), method: :delete, class:"btn", data: { confirm: 'Es-tu sûr?'} %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row row-cols-1">
+        <div class="col">
+          <%= form_tag url_for(action: 'update_pictures'), multipart: true, method: 'patch' do %>
+            <%= hidden_field_tag :id, @attire.id %>
+            <%= file_field_tag 'pictures[]', multiple: true, accept: 'image/png,image/jpeg', class: 'form-control' %>
+            <%= submit_tag 'Ajouter images', class: 'btn' %>
+          <% end %>
+        </div>
+      </div>
       <%= form_tag url_for(action: 'update'), method: "patch" do %>
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <div class="row">

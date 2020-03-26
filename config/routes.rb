@@ -6,13 +6,17 @@ Rails.application.routes.draw do
 
   get 'search', to:"users#search"
 
+  #patch 'avatars', to:"users#update_avatar", as: 'avatar'
+  delete 'avatars/:id', to:"users#del_avatar", as: 'avatar'
+
   resources :users, only: [:edit, :show, :destroy, :update]
 
   resources :carts, only: [:create, :show, :edit, :destroy]
 
-  resources :attires do
-    resources :itempicture, only: [:create, :destroy]
-  end
+  patch 'pictures', to:"attires#update_pictures"
+  delete 'pictures/:id', to:"attires#del_picture", as: 'picture'
+
+  resources :attires
 
   resources :charges, only: [:new, :create]
 
