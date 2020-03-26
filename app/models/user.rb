@@ -7,13 +7,13 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  has_many :attires, as: :owner, foreign_key: "owner_id"
-  has_many :borrows, as: :borrower, foreign_key: "borrower_id"
-  has_many :borrows, as: :lender, foreign_key: "lender_id"
-  has_many :links, as: :linker, foreign_key: "linker_id"
-  has_many :links, as: :linked, foreign_key: "linked_id"
-  has_many :carts, as: :customer, foreign_key: "customer_id"
-  has_many :orders, through: :carts, as: :customer, foreign_key: "customer_id"
+  has_many :attires, foreign_key: "owner_id", dependent: :destroy
+  has_many :borrows_in, foreign_key: "borrower_id"
+  has_many :borrows_out, foreign_key: "lender_id"
+  has_many :links_out, foreign_key: "linker_id"
+  has_many :links_in, foreign_key: "linked_id"
+  has_many :carts, foreign_key: "customer_id"
+  has_many :orders, foreign_key: "customer_id"
 
   after_create :welcome_send
 
@@ -34,3 +34,24 @@ class User < ApplicationRecord
     UserMailer.welcome_email(self).deliver_now
   end
 end
+
+=begin # table "users"
+  t.string "first_name", default: "", null: false
+  t.string "last_name", default: "", null: false
+  t.text "about_me", default: "", null: false
+  t.boolean "is_admin", default: false
+  t.bigint "city_id"
+  t.string "email", default: "", null: false
+  t.string "encrypted_password", default: "", null: false
+  t.string "reset_password_token"
+  t.datetime "reset_password_sent_at"
+  t.datetime "remember_created_at"
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.string "provider"
+  t.string "uid"
+  t.index ["city_id"], name: "index_users_on_city_id"
+  t.index ["email"], name: "index_users_on_email", unique: true
+  t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+=end
