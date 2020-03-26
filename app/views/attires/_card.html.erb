@@ -2,9 +2,9 @@
   <div class="card m-3">
     <div class="card-img">
       <% if item.pictures.attached? %>
-        <%= link_to image_tag(item.pictures.first.variant(resize: '300x300!').processed, class:"img-responsive"), attire_path(item) %>
+        <%= link_to image_tag(item.pictures.first.variant(resize: '300x300!').processed, class:"img-fluid"), attire_path(item) %>
       <% else %>
-        <%= link_to image_tag('https://via.placeholder.com/300x300', height: "300px", width: "auto", class:"img-responsive"), attire_path(item) %>
+        <%= link_to image_tag('https://via.placeholder.com/300x300', height: "300px", width: "auto", class:"img-fluid"), attire_path(item) %>
       <% end %>
     </div>
     <div class="card-body">

@@ -68,9 +68,27 @@ class AttiresController < ApplicationController
   end
 
   def destroy
-    @attire = Attire.find(params[:id])
+    @attire = Attire.with_attached_pictures.find(params[:id])
     @attire.destroy
     redirect_to user_path(current_user.id)
+  end
+
+  def del_picture
+    puts "del_picture params.inspect = #{params.inspect}".red
+    @itempicture = ActiveStorage::Attachment.find(params[:id])
+    puts "del_picture itempicture.inspect = #{@itempicture.inspect}".red
+    @itempicture.purge
+    redirect_back(fallback_location: request.referer)
+  end
+
+  def update_pictures
+    puts "update_pictures params.inspect = #{params.inspect}".red
+    @attire = Attire.with_attached_pictures.find(params[:id])
+    puts "update_pictures attire.inspect = #{@attire.inspect}".red
+    if params[:pictures]
+      @attire.pictures.attach(params[:pictures])
+    end
+    redirect_back(fallback_location: request.referer)
   end
 
   private
