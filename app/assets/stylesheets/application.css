@@ -56,3 +56,15 @@
 #p_footer{
   color: black !important;
 }
+
+/* show cart items count */
+.cart_box{
+	position: relative;
+}
+.cart_box_image{
+}
+.cart_box_text{
+	position: absolute;
+	top: 20px;
+  right: 20px;
+}
