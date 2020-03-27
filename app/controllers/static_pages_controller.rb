@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
   def crew
   end
 
-  def starting_page
+  def ethos
+    @attires = Attire.all
   end
 end

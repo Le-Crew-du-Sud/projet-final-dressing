@@ -24,6 +24,9 @@
         <div class="classynav">
           <ul>
             <% if user_signed_in? %>
+            <li>
+              <%= link_to 'Notre but', ethos_path, class:'nav-item nav-link pr-1' %>
+            </li>
               <li>
                 <%= link_to 'Ajouter un vêtement', new_attire_path, class:'nav-item nav-link pr-1' %>
               </li>
