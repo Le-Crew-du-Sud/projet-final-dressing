@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <tr>
+      <p><strong>Recherche vêtements</strong></p>
+    </tr>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Prix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if search_result.any? && params[:q].blank? == false %>
+      <% search_result.all.each do |attire| %>
+        <tr>
+          <td><%= attire.id %></td>
+          <td><%=link_to attire.title, attire_path(attire.id) %></td>
+          <td><%=link_to number_to_euro(attire.price), attire_path(attire.id) %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4"><i> Désolé, nous n'avons trouvé aucun vêtement correspondant à tes critères.</i></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
