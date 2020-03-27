@@ -23,6 +23,11 @@ Size.destroy_all
 print ", Sizes"
 Condition.destroy_all
 puts ", Conditions."
+
+ActiveRecord::Base.connection.tables.each do |t|
+  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
+
 puts "Tables reseted"
 
 puts "Creating seed"
@@ -35,12 +40,12 @@ City.create(town: "Rennes")
 City.create(town: "Montpellier")
 
 1.times do
-  User.create(first_name: "Prénom Admin", last_name: "Nom Admin", email: "admin@admin.com", city_id: Faker::Number.between(from: 0, to: 5), is_admin: true, password: "voiture", password_confirmation: "voiture")
+  User.create(first_name: "Prénom Admin", last_name: "Nom Admin", email: "admin@admin.com", city_id: City.all.sample.id, is_admin: true, password: "voiture", password_confirmation: "voiture")
 end
 print "."
 i = 1
 10.times do
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "user#{i}@user#{i}.com", city_id: Faker::Number.between(from: 0, to: 5), password: "voiture", password_confirmation: "voiture")
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "user#{i}@user#{i}.com", city_id: City.all.sample.id, password: "voiture", password_confirmation: "voiture")
   i += 1
 end
 print "."
@@ -88,33 +93,34 @@ Category.create(kind: "Veste")
 Category.create(kind: "Robe")
 print "."
 
-Attire.create(title: "Chemise Zara", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
-print "."
 
 a = Attire.create(
-      title: "Pantalon Celio", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
+      title: "Pantalon Celio", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
 puts ">>> #{a.errors.messages}".red
 b = Attire.create(
-      title: "T-shirt Diesel", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
+      title: "T-shirt Diesel", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
 puts ">>> #{b.errors.messages}".red
 c = Attire.create(
-      title: "Short de sport Décathlon", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
+      title: "Short de sport Décathlon", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
 puts ">>> #{c.errors.messages}".red
 d = Attire.create(
-      title: "Robe Le temps des cerises", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
+      title: "Robe Le temps des cerises", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
 puts ">>> #{d.errors.messages}".red
 e = Attire.create(
-      title: "Jean Levis", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
+      title: "Jean Levis", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
 puts ">>> #{e.errors.messages}".red
 f = Attire.create(
-      title: "Chemise Levis", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
+      title: "Chemise Levis", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
 puts ">>> #{f.errors.messages}".red
 g = Attire.create(
-      title: "Hoodie NY", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
+      title: "Hoodie NY", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
 puts ">>> #{g.errors.messages}".red
 h = Attire.create(
-      title: "Casquette Lakers", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
+      title: "Casquette Lakers", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
 puts ">>> #{h.errors.messages}".red
+i = Attire.create(
+      title: "Chemise Zara", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
+      puts ">>> #{i.errors.messages}".red
 
 
 puts "Seed generated!"
