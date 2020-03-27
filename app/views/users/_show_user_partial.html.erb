@@ -24,6 +24,11 @@
         <% end%>
       </tr>
       <% count += 1 %><% end %>
+      <% if @attire_by_user.length == 0 %>
+        <tr>
+          <td></td><td colspan="4"><i> Tu n'as pas encore enregistré des vêtements dans ton Dressing !</i></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
   <hr>
@@ -52,6 +57,11 @@
         <% end%>
       </tr>
       <% count += 1 %><% end %>
+      <% if @attire_by_user_to_sell.length == 0 %>
+        <tr>
+          <td></td><td colspan="4"><i> Tu n'as pas encore enregistré des vêtements à vendre !</i></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
   <hr>
@@ -80,6 +90,11 @@
         <% end%>
       </tr>
       <% count += 1 %><% end %>
+      <% if @attire_by_user_to_lend.length == 0 %>
+        <tr>
+          <td></td><td colspan="4"><i> Tu n'as pas encore enregistré des vêtements à prêter !</i></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
   <hr>
@@ -101,8 +116,13 @@
         <td><%= link_to purchased.attire.title, attire_path(purchased.attire.id) %></td>
         <td><%= link_to number_to_euro(purchased.attire.price), attire_path(purchased.attire.id) %></td>
         <td><%= link_to purchased.created_at.to_time.strftime('%d/%m/%Y'), attire_path(purchased.attire.id) %></td>
-
+        <td><%= link_to "voir reçu", purchased.order.receipt %></td>
       <% count += 1 %><% end %>
+      <% if @items_purchased.length == 0 %>
+        <tr>
+          <td></td><td colspan="4"><i> Tu n'as pas encore acheté des vêtements !</i></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
