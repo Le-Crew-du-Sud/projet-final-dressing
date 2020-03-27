@@ -65,7 +65,7 @@
 }
 
 .jumbotron{
-  background-image: url("/assets/images/vendor_images/bg-index.jpg");
+  background-image: url("/bg-index.jpg");
   background-size: cover;
   height: 400px;
 }
