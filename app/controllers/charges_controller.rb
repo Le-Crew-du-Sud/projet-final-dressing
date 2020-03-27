@@ -7,7 +7,6 @@ class ChargesController < ApplicationController
   end
 
   def create
-    puts "params.inspect = #{params.inspect}".red
     @to_order = Cart.where(customer_id: params[:customer_id], order_id: 0)
     @sold_price = 0
     @to_order.each do |amount|
@@ -18,7 +17,6 @@ class ChargesController < ApplicationController
       email: params[current_user.email],
       source: params[:stripeToken],
     })
-    puts "customer.inspect = #{@customer.inspect}".red
 
     @charge = Stripe::Charge.create({
       customer: @customer.id,
@@ -26,7 +24,6 @@ class ChargesController < ApplicationController
       description: 'Rails Stripe customer',
       currency: 'eur',
     })
-    puts "charge.inspect = #{@charge.inspect}".red
 
     @pre_order = Order.create(
       stripe_customer_id: @charge.customer,
@@ -38,19 +35,16 @@ class ChargesController < ApplicationController
       phone_number: params[:phone_number],
       email: params[:email]
       )
-    puts "pre_order.inspect = #{@pre_order.inspect}".red
-    puts "pre_order.errors = #{@pre_order.errors.messages}".red
+
     @to_order.update(order_id: @pre_order.id)
-    puts "to_order.inspect = #{@to_order.inspect}".red
     @to_order.each do |sold|
-      puts "sold.inspect = #{sold.inspect}".red
       Attire.where(id: sold.attire_id).update(is_sold: true)
     end
+
     @receipt = @charge.receipt_url
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_back(fallback_location: request.referer)
-
   end
 end

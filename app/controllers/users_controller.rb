@@ -19,11 +19,6 @@ class UsersController < ApplicationController
     @attire_by_user_to_sell = @user.attires.where(situation_id: 3)
   end
 
-  def index
-    @user = User.all
-    redirect_to index_path
-  end
-
   def destroy
     @admin_destroy_user = User.find(params[:id])
     @admin_destroy_user.destroy
