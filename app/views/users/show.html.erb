@@ -7,20 +7,15 @@
       <% if flash[:alert] %>
       <div class="alert alert-danger col-12" role="alert"><%= flash[:alert] %></div>
       <% end %>
-      <% if user_signed_in? && current_user.is_admin == true %>
         <div class="col-12 mb-30">
-          <h5>Ton espace admin</h5>
-        </div>
-      <% else %>
-        <div class="col-12 mb-30">
-          <% if @user.id == current_user.id %>
+          <% if @user.id == current_user.id && current_user.is_admin == true %>
+            <h5>Ton espace admin</h5>
+          <% elsif @user.id == current_user.id %>
             <h5>Ton profil</h5>
           <% else %>
               <h5>Profil de <%= @user.first_name %></h5>
           <% end %>
-
         </div>
-      <% end %>
       <div class="col-12 row">
         <div class="col-3">
           <div id="user_profile_picture_box">
