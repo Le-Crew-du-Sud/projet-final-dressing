@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   get 'search', to:"users#search"
   get 'crew', to:"static_pages#crew"
-
+  get 'starting_page', to:"static_pages#starting_page"
+  
   delete 'avatars/:id', to:"users#del_avatar", as: 'avatar'
 
   resources :users, only: [:edit, :show, :destroy, :update]
