@@ -13,7 +13,12 @@
         </div>
       <% else %>
         <div class="col-12 mb-30">
-          <h5>Ton profil</h5>
+          <% if @user.id == current_user.id %>
+            <h5>Ton profil</h5>
+          <% else %>
+              <h5>Profil de <%= @user.first_name %></h5>
+          <% end %>
+
         </div>
       <% end %>
       <div class="col-12 row">
@@ -42,15 +47,15 @@
           <p>Utilisateur depuis le:
             <%= @user.created_at.to_time.strftime('%d/%m/%Y %H:%M:%S') %>
           </p>
-
-          <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
-
+          <% if @user.id == current_user.id %>
+            <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
+          <% end %>
         </div>
       </div>
 
-      <% if user_signed_in? && current_user.is_admin == true %>
+      <% if @user.id == current_user.id && current_user.is_admin == true %>
         <%= render 'show_admin_partial' %>
-      <% else %>
+      <% elsif @user.id == current_user.id %>
         <%= render 'show_user_partial' %>
       <% end %>
 
