@@ -2,7 +2,7 @@
 Projet final en 2 semaines pour **The Hacking Project**
 
 ## Le lien vers Heroku
-https://southcrewapp.herokuapp.com
+https://cloud-dressing.herokuapp.com
 
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)

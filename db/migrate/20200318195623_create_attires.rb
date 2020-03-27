@@ -4,6 +4,9 @@ class CreateAttires < ActiveRecord::Migration[5.2]
       t.string :title, null: false, default: ""
       t.text :description, null: false, default: ""
       t.float :price, null: false, default: 0.00
+      t.boolean :is_sold, default: false
+      t.boolean :is_borrowed, default: false
+
       t.references :category, index:true
       t.references :size, index:true
       t.references :colour, index:true
