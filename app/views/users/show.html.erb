@@ -30,12 +30,7 @@
             <% else %>
               <%= image_tag('vendor_images/user.svg', style:"width:90px; height: auto", class:"img-fluid", alt: "profile_picture", id:"profilepicture") %>
             <% end %>
-            <!--
-            %= form_for(@user, url: avatar_path, method: "patch") do |f| %>
-              %= f.file_field 'avatar', autofocus: true, class:"form-control" %>
-              %= f.submit "Changer", class:"btn" %>
-            % end %>
-            -->
+
           </div>
         </div>
         <div class="col-9 mb-50">
@@ -47,9 +42,11 @@
           <p>Utilisateur depuis le:
             <%= @user.created_at.to_time.strftime('%d/%m/%Y %H:%M:%S') %>
           </p>
+          <!-- FIXME: fix position-->
           <% if @user.id == current_user.id %>
             <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
           <% end %>
+          <%= link_to 'Back', url_for(:back) %>
         </div>
       </div>
 
