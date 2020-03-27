@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <% if search_result.any? && params[:q].blank? == false %>
+    <% if search_result.any? && params[:q].blank? == false && params[:q].to_s.size > 3 %>
       <% search_result.all.each do |user| %>
         <tr>
           <td><%= user.id %></td>
