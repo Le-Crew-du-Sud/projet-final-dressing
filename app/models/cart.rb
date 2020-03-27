@@ -1,6 +1,7 @@
 class Cart < ApplicationRecord
   # belongs_to :user
     belongs_to :customer, class_name: "User"
+    belongs_to :attire, class_name: "Attire"
 end
 =begin # table "carts"
   t.float "sale_price", default: 0.0, null: false

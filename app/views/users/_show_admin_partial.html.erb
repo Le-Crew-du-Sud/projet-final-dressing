@@ -7,15 +7,21 @@
         <th scope="col">Prénoms</th>
         <th scope="col">Noms</th>
         <th scope="col">Supprimer</th>
+        <th scope="col">Status</th>
       </tr>
     </thead>
     <tbody>
       <% @all_users.all.each do |all_users| %>
         <tr>
+          <% admin = "Admin" %>
           <td><%= all_users.id %></td>
           <td><%= link_to all_users.first_name, user_path(all_users.id) %></td>
           <td><%= link_to all_users.last_name, user_path(all_users.id) %></td>
-          <td><%= link_to "Supprimer", user_path(all_users.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+          <td><%= unless all_users.id == current_user.id
+              link_to "Supprimer", user_path(all_users.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}
+            end %>
+          </td>
+          <td><%= all_users.is_admin ? "admin" : "user" %></td>
         </tr>
       <% end %>
     </tbody>
@@ -36,10 +42,10 @@
       <% @all_orders.all.each do |all_orders| %>
         <tr>
           <td><%= all_orders.id %></td>
-          <td><%= all_orders.sold_price %></td>
+          <td><%= number_to_euro(all_orders.sold_price/100) %></td>
           <td><%= all_orders.stripe_customer_id %></td>
-          <td><%= all_orders.customer_id %></td>
-          <td><%= all_orders.attire_id%></td>
+          <td><%= link_to all_orders.customers.collect(&:id)[0], user_path(all_orders.customers.collect(&:id)[0]) %></td>
+          <td><%= link_to all_orders.attires.collect(&:id)[0], attire_path(all_orders.attires.collect(&:id)[0]) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -63,8 +69,12 @@
           <td><%= attire.id %></td>
           <td><%= link_to attire.title, attire_path(attire.id) %></td>
           <td><%= link_to attire.owner_id, attire_path(attire.id) %></td>
-          <td><%= link_to attire.price, attire_path(attire.id) %></td>
+          <td><%= link_to number_to_euro(attire.price), attire_path(attire.id) %></td>
+          <% if !attire.is_sold %>
           <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
+          <% else %>
+          <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
+          <% end %>
           <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
         </tr>
       <% end %>

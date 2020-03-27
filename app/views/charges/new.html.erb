@@ -1,64 +1,83 @@
-<%= form_tag charges_path do %>
-<article>
-  <% if flash[:error].present? %>
-    <div id="error_explanation">
-      <p><%= flash[:error] %></p>
-    </div>
-  <% end %>
-  <%= hidden_field_tag :customer_id, @customer.id %>
-  <div class="row">
-    <div class="col-md-6 mb-3">
-      <%= label_tag 'Prénom' %>
-      <%= text_field_tag 'first_name', @customer.first_name, class: 'form-control' %>
-    </div>
-    <div class="col-md-6 mb-3">
-      <%= label_tag 'Nom de Famille' %>
-      <%= text_field_tag 'last_name', @customer.last_name, class: 'form-control' %>
-    </div>
-    <div class="col-md-6 mb-3">
-      <%= label_tag 'Adresse' %>
-      <%= text_field_tag 'address', nil, class: 'form-control' %>
-    </div>
-    <div class="col-md-6 mb-3">
-      <%= label_tag 'Code Postale' %>
-      <%= text_field_tag 'postcode', nil, class: 'form-control' %>
-    </div>
-    <div class="col-md-6 mb-3">
-      <%= label_tag 'Ville' %>
-      <%= text_field_tag 'city', @customer.city.town, class: 'form-control' %>
-    </div>
-    <div class="col-md-6 mb-3">
-      <%= label_tag 'Téléphone' %>
-      <%= text_field_tag 'phone_number', nil, class: 'form-control' %>
-    </div>
-    <div class="col-md-6 mb-3">
-      <%= label_tag 'Email' %>
-      <%= text_field_tag 'email', @customer.email, class: 'form-control' %>
-    </div>
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <%= form_tag charges_path do %>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="checkout_details_area mt-50 clearfix">
+            <div class="cart-page-heading mb-30">
+              <h5>Adresse de livraison</h5>
+            </div>
+            <article>
+              <%= hidden_field_tag :customer_id, @customer.id %>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <%= label_tag 'Prénom' %>
+                  <%= text_field_tag 'first_name', @customer.first_name, class: 'form-control' %>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <%= label_tag 'Nom de Famille' %>
+                  <%= text_field_tag 'last_name', @customer.last_name, class: 'form-control' %>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <%= label_tag 'Adresse' %>
+                  <%= text_field_tag 'address', nil, class: 'form-control' %>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <%= label_tag 'Code Postale' %>
+                  <%= text_field_tag 'postcode', nil, class: 'form-control' %>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <%= label_tag 'Ville' %>
+                  <%= text_field_tag 'city', @customer.city.town, class: 'form-control' %>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <%= label_tag 'Téléphone' %>
+                  <%= text_field_tag 'phone_number', nil, class: 'form-control' %>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <%= label_tag 'Email' %>
+                  <%= text_field_tag 'email', @customer.email, class: 'form-control' %>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+          <div class="order-details-confirmation">
+            <div class="cart-page-heading">
+              <h5>Le détail de votre commande</h5>
+            </div>
+            <ul class="order-details-form mb-4">
+              <li>
+                <span>Produit</span>
+                <span>Total</span></li>
+              <% @new_order.each do |item_cart| %>
+                <li>
+                  <span><%= Attire.find(item_cart.attire_id).title %></span>
+                  <span><%= number_to_euro(item_cart.sale_price) %></span></li>
+              <% end %>
+              <li>
+                Total à payer (TTC)
+                <%= number_to_euro(@new_order.sum(:sale_price)) %></li>
+            </ul>
+            <div class="mb-4">
+              <% if flash[:error].present? %>
+                <div class="alert alert-warning" id="error_explanation">
+                  <p><%= flash[:error] %></p>
+                </div>
+              <% end %>
+              <script
+                src="https://checkout.stripe.com/checkout.js"
+                class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="Cloud Dressing shop"
+                data-amount="<%= @new_order.sum(:sale_price)*100 %>"
+                data-currency="eur"
+                data-locale="fr"></script>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-</article>
-
-<ul class="order-details-form mb-4">
-  <li>
-    <span>Produit</span>
-    <span>Total</span></li>
-  <% @new_order.each do |item_cart| %>
-    <li>
-      <span><%= Attire.find(item_cart.attire_id).title %></span>
-      <span><%= item_cart.sale_price %></span></li>
-  <% end %>
-  <li>
-    Total à payer (TTC)
-    <%= @new_order.sum(:sale_price) %></li>
-</ul>
-
-<script
-  src="https://checkout.stripe.com/checkout.js"
-  class="stripe-button"
-  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-  data-description="Cloud Dressing shop"
-  data-amount="<%= @new_order.sum(:sale_price)*100 %>"
-  data-currency="eur"
-  data-locale="fr"></script>
-
-<% end %>
+</div>

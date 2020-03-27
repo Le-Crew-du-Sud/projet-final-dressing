@@ -41,6 +41,11 @@ class ChargesController < ApplicationController
     puts "pre_order.inspect = #{@pre_order.inspect}".red
     puts "pre_order.errors = #{@pre_order.errors.messages}".red
     @to_order.update(order_id: @pre_order.id)
+    puts "to_order.inspect = #{@to_order.inspect}".red
+    @to_order.each do |sold|
+      puts "sold.inspect = #{sold.inspect}".red
+      Attire.where(id: sold.attire_id).update(is_sold: true)
+    end
     @receipt = @charge.receipt_url
 
     rescue Stripe::CardError => e
