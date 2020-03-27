@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2020_03_23_145339) do
     t.string "title", default: "", null: false
     t.text "description", default: "", null: false
     t.float "price", default: 0.0, null: false
+    t.boolean "is_sold", default: false
+    t.boolean "is_borrowed", default: false
     t.bigint "category_id"
     t.bigint "size_id"
     t.bigint "colour_id"
