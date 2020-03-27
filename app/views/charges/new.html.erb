@@ -1,18 +1,64 @@
 <%= form_tag charges_path do %>
-  <article>
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
-    <% end %>
-    <label class="amount">
-      <span>Amount: $5.00</span>
-    </label>
-  </article>
+<article>
+  <% if flash[:error].present? %>
+    <div id="error_explanation">
+      <p><%= flash[:error] %></p>
+    </div>
+  <% end %>
+  <%= hidden_field_tag :customer_id, @customer.id %>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= label_tag 'Prénom' %>
+      <%= text_field_tag 'first_name', @customer.first_name, class: 'form-control' %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= label_tag 'Nom de Famille' %>
+      <%= text_field_tag 'last_name', @customer.last_name, class: 'form-control' %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= label_tag 'Adresse' %>
+      <%= text_field_tag 'address', nil, class: 'form-control' %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= label_tag 'Code Postale' %>
+      <%= text_field_tag 'postcode', nil, class: 'form-control' %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= label_tag 'Ville' %>
+      <%= text_field_tag 'city', @customer.city.town, class: 'form-control' %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= label_tag 'Téléphone' %>
+      <%= text_field_tag 'phone_number', nil, class: 'form-control' %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= label_tag 'Email' %>
+      <%= text_field_tag 'email', @customer.email, class: 'form-control' %>
+    </div>
+  </div>
+</article>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-amount="500"
-          data-locale="auto"></script>
+<ul class="order-details-form mb-4">
+  <li>
+    <span>Produit</span>
+    <span>Total</span></li>
+  <% @new_order.each do |item_cart| %>
+    <li>
+      <span><%= Attire.find(item_cart.attire_id).title %></span>
+      <span><%= item_cart.sale_price %></span></li>
+  <% end %>
+  <li>
+    Total à payer (TTC)
+    <%= @new_order.sum(:sale_price) %></li>
+</ul>
+
+<script
+  src="https://checkout.stripe.com/checkout.js"
+  class="stripe-button"
+  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+  data-description="Cloud Dressing shop"
+  data-amount="<%= @new_order.sum(:sale_price)*100 %>"
+  data-currency="eur"
+  data-locale="fr"></script>
+
 <% end %>

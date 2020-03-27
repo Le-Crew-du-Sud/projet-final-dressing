@@ -1,11 +1,13 @@
 class CartsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     puts ">>>>>>>>>>>>> #{params[:sale_price]}".red
     @cart = Cart.create(
       customer_id: current_user.id,
       attire_id: params[:attire_id],
-      sale_price: params[:sale_price]
+      sale_price: params[:sale_price],
+      order_id: 0
       )
     puts ">>>>>> #{@cart.errors.messages}".red
     puts @cart.id
@@ -15,7 +17,7 @@ class CartsController < ApplicationController
   end
 
   def show
-    @cart = Cart.where(customer_id: params[:id]).to_a
+    @cart = Cart.where(customer_id: params[:id], order_id: 0).to_a
     puts "#{@cart.inspect}".red
 
   end

@@ -56,7 +56,7 @@
         <p>Le total de ton panier s'élève à
         <%= @sum %>€</p>
       </div>
-      <%= link_to "Checkout", order_path(current_user.id), class:'btn', style:'margin-top: auto;'%>
+      <%= link_to "Checkout", new_charge_path, class:'btn', style:'margin-top: auto;'%>
 
     </div>
   </div>
