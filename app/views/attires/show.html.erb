@@ -63,8 +63,8 @@
               </tbody>
             </table>
             <div class="col-6">
-            <% if user_signed_in? %>
-                <%= form_tag(carts_path, method: :create) do %>
+            <% if user_signed_in? && @attire.owner_id != current_user.id %>
+                <%= form_tag(carts_path, method: :create) do %> 
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                   <input type="hidden" name="attire_id" value=<%= @attire.id %>>
                   <input type="hidden" name="customer_id" value=<%= current_user.id %>>
