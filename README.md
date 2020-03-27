@@ -16,6 +16,9 @@ https://cloud-dressing.herokuapp.com
 * `rails server`
 * Se promener dans l'arborescence : http://localhost:3000/
 
+utilisateur : user1@user1.com / mdp : voiture (jusqu'à user10@user10.com / mdp : voiture)
+admin : admin@admin.com / mdp : voiture
+
 ## Authors
 Projet réalisé par **[@maksimTHP]**(https://github.com/maksimTHP), **[@AnouarLdn]**(https://github.com/AnouarLdn), **[@fbrgmn]**(https://github.com/fbrgmn), **[@Akushon]**(https://github.com/Akushon/)
 
