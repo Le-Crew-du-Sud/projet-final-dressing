@@ -37,7 +37,7 @@
           <p>Utilisateur depuis le:
             <%= @user.created_at.to_time.strftime('%d/%m/%Y %H:%M:%S') %>
           </p>
-        
+
           <% if @user.id == current_user.id %>
             <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
           <% end %>
@@ -49,6 +49,8 @@
         <%= render 'show_admin_partial' %>
       <% elsif @user.id == current_user.id %>
         <%= render 'show_user_partial' %>
+      <% else %>
+        <%= render 'show_user_dressing' %>
       <% end %>
 
     </div>

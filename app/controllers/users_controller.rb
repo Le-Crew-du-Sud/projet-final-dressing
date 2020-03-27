@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @all_situations = Situation.all
     @all_sizes = Size.all
     @attire_by_user = @user.attires
+    @dressing_by_user = @user.attires.where.not(situation_id: 1)
     @attire_by_user_to_lend = @user.attires.where(situation_id: 4)
     @attire_by_user_to_sell = @user.attires.where(situation_id: 3)
     @items_purchased = Cart.where(customer_id: params[:id]).where("order_id > 0")
