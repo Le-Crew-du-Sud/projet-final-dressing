@@ -44,11 +44,12 @@
               <%= f.label "password confirmation" %><br/>
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
             </div>
-            <div class="col-12 mb-4">
+            <div class="col-12 mb-3">
               <%= f.submit "Sign up", class:"btn essence-btn" %>
             </div>
-            <!-- FIXME: fix position -->
-            <%= link_to 'Back', url_for(:back) %>
+            <div class="col-12 mb-3">
+            <%= link_to "Retour à l'accueil", "/" %>
+            </div>
               <%= render "devise/shared/links" %>
 
           </div>

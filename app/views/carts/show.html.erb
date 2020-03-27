@@ -58,8 +58,10 @@
       <%= if @cart.length > 0
         link_to "Checkout", new_charge_path, class:'btn', style:'margin-top: auto;'
         end %>
-        <!-- FIXME: fix position -->
-        <%= link_to 'Back', url_for(:back) %>
+
+        <div class="col-md-12 mb-3">
+          <%= link_to 'Continuer mes achats', "/" %>
+        </div>
     </div>
   </div>
 </div>
