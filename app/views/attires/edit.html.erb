@@ -59,6 +59,8 @@
             <% end %>
           </div>
             <% end %>
+            <!-- FIXME: fix position -->
+            <%= link_to 'Back', url_for(:back) %>
           <div class="">
             <%= form_tag url_for(action: 'update_pictures'), multipart: true, method: 'patch' do %>
               <%= hidden_field_tag :id, @attire.id %>

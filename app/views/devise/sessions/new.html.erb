@@ -20,6 +20,8 @@
             <% end %>
             <div class="col-12 mb-3">
               <%= f.submit "Se connecter", class:"btn essence-btn" %>
+              <!-- FIXME: fix position -->
+              <%= link_to 'Back', url_for(:back) %>
             </div>
             <%= render "devise/shared/links" %>
           </div>
