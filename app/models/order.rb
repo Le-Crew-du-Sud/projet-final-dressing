@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
 
-  belongs_to :customer, class_name: "User"
+  has_many :carts, foreign_key: "order_id"
 end
 
 =begin # table "orders"

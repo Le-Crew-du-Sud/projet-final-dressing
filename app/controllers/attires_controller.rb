@@ -1,4 +1,6 @@
 class AttiresController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @attires = Attire.with_attached_pictures.order(updated_at: :desc).all
   end

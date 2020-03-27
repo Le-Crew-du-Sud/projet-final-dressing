@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :carts, foreign_key: "customer_id"
   has_many :orders, foreign_key: "customer_id"
 
+  belongs_to :city, class_name: "City"
+
   after_create :welcome_send
 
   # Comment configurer Devise et OmniAuth pour votre application Rails

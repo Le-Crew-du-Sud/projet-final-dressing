@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <% if flash[:notice] %>
-      <div class="alert alert-success col-12" role="alert"><%= flash[:notice] %></div>
+        <div class="alert alert-success col-12" role="alert"><%= flash[:notice] %></div>
       <% end %>
       <div class="col-12 mb-30">
         <h2>Panier</h2>
@@ -41,18 +41,23 @@
       </div>
       <div class="col-6">
         <% if @cart.length < 2 %>
-        <p>Tu as <%= @cart.length %> objet dans ton panier</p>
+          <p>Tu as
+            <%= @cart.length %>
+          objet dans ton panier</p>
         <% else %>
-        <p>Tu as <%= @cart.length %> objets dans ton panier</p>
+          <p>Tu as
+            <%= @cart.length %>
+          objets dans ton panier</p>
         <% end %>
         <% @sum = 0 %>
         <% @cart.each do |i| %>
-        <% @sum += i.sale_price %>
+          <% @sum += i.sale_price %>
         <% end %>
         <p>Le total de ton panier s'élève à <%= number_to_euro(@sum) %></p>
       </div>
+      <%= link_to "Checkout", new_charge_path, class:'btn', style:'margin-top: auto;'%>
+
     </div>
   </div>
 </div>
-
-<!-- ##### Main Content Wrapper End ##### -->
+        <!-- ##### Main Content Wrapper End ##### -->
