@@ -61,7 +61,7 @@
             <% end %>
 
             <div class="col-md-12 mb-3">
-            <%= link_to "Retour à l'article", url_for(:back), class:"btn" %>
+            <%= link_to "Retour à l'article", url_for(:back) %>
             </div>
           <div class="">
             <%= form_tag url_for(action: 'update_pictures'), multipart: true, method: 'patch' do %>
