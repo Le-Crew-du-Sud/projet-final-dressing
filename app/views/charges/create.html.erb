@@ -1,0 +1,66 @@
+<div class="checkout_area section-padding-80">
+    <div class="container">
+      <h1>Félicitations
+        <% @pre_order.customers.each do |customer| %>
+          <%= customer.first_name %>
+        <% end %>, tu viens de contribuer à sauver la planète</h1>
+      <p>Grâce à toi, un
+        <strong>vêtement</strong>
+        de plus en moins à mettre à la poubelle! Tu viens de donner une vie supplémentaire à une fripe! C'est pas une mince affaire!</p>
+      <p>Voilà un pas de plus vers
+        <strong>un monde plus sain</strong>, moins pollué, grâce à un comportement
+        <strong>éco-responsable</strong>
+        de ta part.</p>
+      <p>
+        Et cela sans lésigner sur le style!
+      </p>
+      <p>
+        <strong>On te félicite tous chez
+          <span style="color:#f9af16 !important;">Cloud Dressing</span>
+          !</strong>
+      </p>
+      <br>
+      <h5>Statut de la commande: Validée
+        <i class="fas fa-clipboard-check fa-lg" style="color: green;"></i>
+        <h5>
+          <br>
+          <h6>
+            Détails de la commande:</h6>
+          <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-3">
+              <table class="table">
+                <thead class="thead-light">
+
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom de l'article</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Vendu par</th>
+                  </tr>
+                </thead>
+                <br/>
+                <br/>
+                <tbody>
+                  <% @pre_order.attires.each do |attire| %>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td scope="col"><%= attire.title %></td>
+                      <td scope="col"><%= number_to_euro(attire.price) %></td>
+                      <td scope="col"><%= attire.owner.first_name %>
+                        <%= attire.owner.last_name %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <%= link_to "Recu de la commande", @receipt, class:"btn essence-btn mb-50" %>
+
+          <h6>Adresse de livraison et de facturation:</h6>
+          <p><%= @pre_order.address %><br/>
+            <p>
+              <p><%= @pre_order.postcode %> <%= @pre_order.city %></p>
+              <%= link_to "Retour à l'accueil du site", "/", class:"btn essence-btn mb-50" %>
+            </div>
+          </div>

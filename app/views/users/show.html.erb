@@ -1,0 +1,59 @@
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <div class="row">
+      <% if flash[:notice] %>
+      <div class="alert alert-success col-12" role="alert"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+      <div class="alert alert-danger col-12" role="alert"><%= flash[:alert] %></div>
+      <% end %>
+        <div class="col-12 mb-30">
+          <% if @user.id == current_user.id && current_user.is_admin == true %>
+            <h5>Ton espace admin</h5>
+          <% elsif @user.id == current_user.id %>
+            <h5>Ton profil</h5>
+          <% else %>
+              <h5>Profil de <%= @user.first_name %></h5>
+          <% end %>
+        </div>
+      <div class="col-12 row">
+        <div class="col-3">
+          <div id="user_profile_picture_box">
+            <% if @user.avatar.attached? %>
+              <%= image_tag @user.avatar.variant(resize: "150x150!").processed, class:"img-fluid", alt: "profile_picture", id:"profilepicture" %>
+              <%= link_to 'Effacer', avatar_path(@user.id), method: :delete, class:"btn", data: { confirm: 'Es-tu sûr?'}, id:"deleteprofile-pic-button"%>
+            <% else %>
+              <%= image_tag('vendor_images/user.svg', style:"width:90px; height: auto", class:"img-fluid", alt: "profile_picture", id:"profilepicture") %>
+            <% end %>
+
+          </div>
+        </div>
+        <div class="col-9 mb-50">
+          <p>
+            <%= @user.first_name %>
+            <%= @user.last_name %></p>
+          <p>Email de contact:
+            <%= @user.email %></p>
+          <p>Utilisateur depuis le:
+            <%= @user.created_at.to_time.strftime('%d/%m/%Y %H:%M:%S') %>
+          </p>
+
+          <% if @user.id == current_user.id %>
+            <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
+          <% end %>
+
+        </div>
+      </div>
+      <% if @user.id == current_user.id && current_user.is_admin == true %>
+        <%= render 'show_admin_partial' %>
+      <% elsif @user.id == current_user.id %>
+        <%= render 'show_user_partial' %>
+      <% else %>
+        <%= render 'show_user_dressing' %>
+      <% end %>
+      <div class="col-12 mt-3 ml-3 mb-3" style="margin-bottom: 150px !important;">
+        <%= link_to "Retour", :back %>
+      </div>
+    </div>
+  </div>
+</div>

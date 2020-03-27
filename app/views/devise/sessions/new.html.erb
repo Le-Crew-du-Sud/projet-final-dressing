@@ -1,0 +1,35 @@
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <div class="row">
+          <div class="cart-page-heading mb-30">
+            <h5>Connecte-toi!</h5>
+          </div>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="row">
+            <div class="col-12 mb-3">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+            </div>
+            <div class="col-12 mb-3">
+              <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
+            </div>
+            <% if devise_mapping.rememberable? %>
+            <div class="col-12 mb-3">
+              <%= f.check_box :remember_me %>
+              <label for="remember_me">Se souvenir de moi</label>
+            </div>
+            <% end %>
+            <div class="col-12 mb-3">
+              <%= f.submit "Se connecter", class:"btn essence-btn" %>
+            </div>
+            <div class="col-12 mb-3">
+              <%= link_to 'Retour', "/" %>
+            </div>
+            <%= render "devise/shared/links" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+<!-- ##### Checkout Area End ##### -->

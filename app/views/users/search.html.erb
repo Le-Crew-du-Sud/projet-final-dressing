@@ -1,0 +1,21 @@
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-12">
+        <h5>Résultat de la recherche</h5>
+      </div>
+      <div class="col-6 mb-3">
+        <p>
+          La fonction de recherche vous permet de retrouver des utilisateurs en cherchant en fonction du nom, du prénom ou de l'email de la personne que vous cherchez.
+        </p>
+      </div>
+
+      <div class="col-12" id="search_partial">
+        <%= render 'user_search_partial', search_result: @search_result_user %>
+        <%= render 'attire_search_partial', search_result: @search_result_attire %>
+      </div>
+
+    </div>
+  </div>
+</div>

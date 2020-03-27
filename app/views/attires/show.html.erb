@@ -1,0 +1,98 @@
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <div class="row">
+      <% if flash[:notice] %>
+      <div class="alert alert-success col-12" role="alert"><%= flash[:notice] %></div>
+      <% end %>
+      <div class="owl-carousel owl-theme col-6 mb-3">
+        <% (0...@attire.pictures.count).each do |image| %>
+          <div><%= image_tag(@attire.pictures[image].variant(resize: '300x300').processed, class:"img-fluid") %></div>
+        <% end %>
+      </div>
+          <div class="col-6 mb-3">
+            <div class="col-12 mb-3">
+              <h5 class="lead"><%= @attire.title %></h5>
+            </div>
+            <div class="col-12 mb-3">
+              <%= @attire.description %>
+            </div>
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <td scope="row"></td>
+                  <th scope="col">Détails de l'article</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Catégorie:</th>
+                  <td><%= @attire.category.kind %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Prix:</th>
+                  <td scope="col"><%= number_to_euro(@attire.price) %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Taille:</th>
+                  <td scope="col"><%= @attire.size.measure %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Couleur:</th>
+                  <td scope="col"><%= @attire.colour.tint %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Materiaux:</th>
+                  <td scope="col"><%= @attire.fabric.variety %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Status:</th>
+                  <td scope="col"><%= @attire.situation.scope %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Etat:</th>
+                  <td scope="col"><%= @attire.condition.state %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Marque:</th>
+                  <td scope="col"><%= @attire.brand.trademark %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Vendu par:</th>
+                  <td scope="col"><%= @attire.owner.first_name %> <%= @attire.owner.last_name %></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="col-6">
+            <% if user_signed_in? && @attire.owner_id != current_user.id %>
+                <%= form_tag(carts_path, method: :create) do %> 
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                  <input type="hidden" name="attire_id" value=<%= @attire.id %>>
+                  <input type="hidden" name="customer_id" value=<%= current_user.id %>>
+                  <input type="hidden" name="sale_price" value=<%= @attire.price %>>
+                  <% if !@attire.is_sold %>
+                    <%= submit_tag "Ajouter au Panier", class: "btn essence-btn mb-3" %>
+                  <% else %>
+                    <%= submit_tag "Vendu", disabled: true, class: "btn essence-btn mb-3" %>
+                  <% end %>
+                <% end %>
+            <% end %>
+            </div>
+            <% if (user_signed_in? && ((@attire.owner_id == current_user.id) || current_user.is_admin == true) ) %>
+              <% if !@attire.is_sold? %>
+                <div class="col-12 mb-3">
+                  <%= link_to "Éditer ce vêtement", edit_attire_path(@attire.id), class:"btn essence-btn" %>
+                </div>
+                <div class="col-12 mb-3">
+                  <%= link_to "Supprimer ce vêtement", attire_path(@attire.id), class:"btn essence-btn", data:{method: "DELETE"} %>
+                </div>
+              <% end%>
+            <% end %>
+
+            <div class="col-md-12 mb-3">
+            <%= link_to "Retour", url_for(:back) %>
+            </div>
+          </div>
+    </div>
+
+  </div>
+</div>

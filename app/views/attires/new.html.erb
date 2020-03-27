@@ -1,0 +1,65 @@
+<div class="checkout_area section-padding-80">
+  <div class="container">
+    <div class="row">
+      <div class="cart-page-heading mb-30">
+        <h5>Ajoute un vêtement à ta garde-robe</h5>
+      </div>
+      <%= form_tag url_for(action: 'create'), multipart: true, method: 'post' do %>
+        <%= hidden_field_tag :owner_id, current_user.id %>
+      <div class="row">
+        <div class="col-12 mb-3">
+          <%= label_tag 'Nom du vêtement' %><br>
+          <%= text_field_tag 'title', nil, class: 'form-control' %><br>
+        </div>
+        <div class="col-12 mb-3">
+          <%= label_tag 'Description' %><br>
+          <%= text_area_tag 'description', nil, class: 'form-control' %><br>
+        </div>
+        <div class="col-12 mb-3">
+          <%= label_tag 'Images' %><br>
+          <%= file_field_tag 'pictures[]', multiple: true, accept: 'image/png,image/jpeg', class: 'form-control' %><br>
+        </div>
+        <div class="col-3 mb-3">
+          <%= label_tag 'Prix' %><br>
+          <%= number_field_tag 'price', nil, class: 'form-control' %><br>
+        </div><br>
+        <div class="col-2 mb-3">
+          <%= label_tag 'Categorie' %><br>
+          <%= select_tag(:category_id, options_for_select(@category_array)) %><br>
+        </div><br>
+        <div class="col-2 mb-3">
+          <%= label_tag 'Taille' %><br>
+          <%= select_tag(:size_id, options_for_select(@size_array)) %><br>
+        </div><br>
+        <div class="col-2 mb-3">
+          <%= label_tag 'Couleur' %><br>
+          <%= select_tag(:colour_id, options_for_select(@colour_array)) %><br>
+        </div><br>
+        <div class="col-2 mb-3">
+          <%= label_tag 'Matière' %><br>
+          <%= select_tag(:fabric_id, options_for_select(@fabric_array)) %><br>
+        </div><br>
+        <div class="col-3 mb-3">
+          <%= label_tag 'Disponibilité' %><br>
+          <%= select_tag(:situation_id, options_for_select(@situation_array)) %><br>
+        </div><br>
+        <div class="col-3 mb-3">
+          <%= label_tag 'Etat' %><br>
+          <%= select_tag(:condition_id, options_for_select(@condition_array)) %><br>
+        </div><br>
+        <div class="col-3 mb-50">
+          <%= label_tag 'Marque' %><br>
+          <%= select_tag(:brand_id, options_for_select(@brand_array)) %><br>
+        </div><br>
+        <div class="col-md-6 mb-3">
+          <%= submit_tag 'Ajouter ce vêtement', class: 'btn essence-btn' %>
+        </div>
+
+        <div class="col-md-12 mb-3">
+        <%= link_to "Retour à l'accueil", "/" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

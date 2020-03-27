@@ -1,0 +1,29 @@
+<table class="table">
+  <thead>
+    <tr>
+      <p><strong>Recherche utilisateurs</strong></p>
+    </tr>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if search_result.any? && params[:q].blank? == false && params[:q].to_s.size > 3 %>
+      <% search_result.all.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%=link_to user.first_name, user_path(user.id) %></td>
+          <td><%=link_to user.last_name, user_path(user.id) %></td>
+          <td><%=link_to user.email.gsub(/.{0,4}@/, '****@'), user_path(user.id) %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4"><i> Désolé, nous n'avons trouvé personne correspondant à tes critères.</i></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
