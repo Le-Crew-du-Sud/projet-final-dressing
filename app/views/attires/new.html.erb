@@ -54,8 +54,10 @@
         <div class="col-md-6 mb-3">
           <%= submit_tag 'Ajouter ce vêtement', class: 'btn essence-btn' %>
         </div>
-        <!-- FIXME: fix position -->
-        <%= link_to 'Back', url_for(:back) %>
+
+        <div class="col-md-12 mb-3">
+        <%= link_to "Retour à l'accueil", "/" %>
+        </div>
       <% end %>
       </div>
     </div>

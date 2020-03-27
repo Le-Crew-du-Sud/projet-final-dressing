@@ -59,8 +59,10 @@
             <% end %>
           </div>
             <% end %>
-            <!-- FIXME: fix position -->
-            <%= link_to 'Back', url_for(:back) %>
+
+            <div class="col-md-12 mb-3">
+            <%= link_to "Retour à l'article", url_for(:back), class:"btn" %>
+            </div>
           <div class="">
             <%= form_tag url_for(action: 'update_pictures'), multipart: true, method: 'patch' do %>
               <%= hidden_field_tag :id, @attire.id %>
@@ -84,6 +86,6 @@
   </div>
 <% else %>
   <div style="height: 60vh">
-    <div class="alert alert-danger col-12" role="alert"><%= "Tu n'as pas le droit d'acceder ce contenu !" %></div>
+    <div class="alert alert-danger col-12" role="alert"><%= "Tu n'as pas le droit d'acceder à ce contenu !" %></div>
   </div>
 <% end %>
