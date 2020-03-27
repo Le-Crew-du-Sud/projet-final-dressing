@@ -91,6 +91,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Catégories</th>
+            <th scope="col">Qté d'objets</th>
           </tr>
         </thead>
         <tbody>
@@ -98,6 +99,7 @@
             <tr>
               <td><%= all_cats.id %></td>
               <td><%= all_cats.kind%></td>
+              <td><%= Attire.where(category_id: all_cats.id).count %></td>
             </tr>
           <% end %>
         </tbody>
@@ -110,6 +112,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Marques</th>
+            <th scope="col">Qté d'objets</th>
           </tr>
         </thead>
         <tbody>
@@ -117,6 +120,7 @@
             <tr>
               <td><%= all_brands.id %></td>
               <td><%= all_brands.trademark%></td>
+              <td><%= Attire.where(brand_id: all_brands.id).count %></td>
             </tr>
           <% end %>
         </tbody>
@@ -129,6 +133,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Villes</th>
+            <th scope="col">Nb de Users par ville</th>
           </tr>
         </thead>
         <tbody>
@@ -136,6 +141,7 @@
             <tr>
               <td><%= all_cities.id %></td>
               <td><%= all_cities.town%></td>
+              <td><%= User.where(city_id: all_cities.id).count %></td>
             </tr>
           <% end %>
         </tbody>
@@ -148,6 +154,8 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Couleurs</th>
+            <th scope="col">Qté d'objets</th>
+
           </tr>
         </thead>
         <tbody>
@@ -155,6 +163,8 @@
             <tr>
               <td><%= all_colours.id %></td>
               <td><%= all_colours.tint%></td>
+              <td><%= Attire.where(colour_id: all_colours.id).count %></td>
+
             </tr>
           <% end %>
         </tbody>
@@ -167,6 +177,8 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Condition</th>
+            <th scope="col">Qté d'objets</th>
+
           </tr>
         </thead>
         <tbody>
@@ -174,6 +186,7 @@
             <tr>
               <td><%= all_conditions.id %></td>
               <td><%= all_conditions.state%></td>
+              <td><%= Attire.where(condition_id: all_conditions.id).count %></td>
             </tr>
           <% end %>
         </tbody>
@@ -186,6 +199,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Matières</th>
+            <th scope="col">Qté d'objets</th>
           </tr>
         </thead>
         <tbody>
@@ -193,6 +207,7 @@
             <tr>
               <td><%= all_fabrics.id %></td>
               <td><%= all_fabrics.variety%></td>
+              <td><%= Attire.where(fabric_id: all_fabrics.id).count %></td>
             </tr>
           <% end %>
         </tbody>
@@ -205,6 +220,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Tailles</th>
+            <th scope="col">Qté d'objets</th>
           </tr>
         </thead>
         <tbody>
@@ -212,6 +228,7 @@
             <tr>
               <td><%= all_sizes.id %></td>
               <td><%= all_sizes.measure%></td>
+              <td><%= Attire.where(size_id: all_sizes.id).count %></td>
             </tr>
           <% end %>
         </tbody>
@@ -224,6 +241,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Statut</th>
+            <th scope="col">Qté d'objets</th>
           </tr>
         </thead>
         <tbody>
@@ -231,6 +249,7 @@
             <tr>
               <td><%= all_situations.id %></td>
               <td><%= all_situations.scope%></td>
+              <td><%= Attire.where(situation_id: all_situations.id).count %></td>
             </tr>
           <% end %>
         </tbody>
