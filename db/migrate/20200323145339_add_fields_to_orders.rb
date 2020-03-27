@@ -7,5 +7,6 @@ class AddFieldsToOrders < ActiveRecord::Migration[5.2]
     add_column :orders, :city, :string
     add_column :orders, :phone_number, :string
     add_column :orders, :email, :string
+    add_column :orders, :receipt, :string
   end
 end

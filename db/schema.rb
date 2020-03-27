@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_145339) do
     t.string "city"
     t.string "phone_number"
     t.string "email"
+    t.string "receipt"
   end
 
   create_table "situations", force: :cascade do |t|

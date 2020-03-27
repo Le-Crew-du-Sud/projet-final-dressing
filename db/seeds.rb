@@ -22,7 +22,11 @@ print ", Situations"
 Size.destroy_all
 print ", Sizes"
 Condition.destroy_all
-puts ", Conditions."
+puts ", Conditions"
+Cart.destroy_all
+puts ", Carts"
+Order.destroy_all
+puts ", Orders."
 
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)

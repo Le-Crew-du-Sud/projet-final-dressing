@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @attire_by_user = @user.attires
     @attire_by_user_to_lend = @user.attires.where(situation_id: 4)
     @attire_by_user_to_sell = @user.attires.where(situation_id: 3)
+    @items_purchased = Cart.where(customer_id: params[:id]).where("order_id > 0")
   end
 
   def destroy

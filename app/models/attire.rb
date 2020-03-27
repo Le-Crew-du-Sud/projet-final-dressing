@@ -11,4 +11,6 @@ class Attire < ApplicationRecord
   belongs_to :size, class_name: "Size"
   belongs_to :owner, class_name: "User"
 
+  has_many :carts, foreign_key: "attire_id"
+
 end

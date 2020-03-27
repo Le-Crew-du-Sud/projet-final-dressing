@@ -10,20 +10,25 @@
       </tr>
     </thead>
     <tbody>
-    <% count = 1 %>
-    <% @attire_by_user.all.each do |attire| %>
-    <tr>
-      <td><%= count %></td>
-      <td><%= link_to attire.title, attire_path(attire.id) %></td>
-      <td><%= link_to number_to_euro(attire.price) , attire_path(attire.id) %></td>
-      <% if !attire.is_sold? %>
+      <% count = 1 %>
+      <% @attire_by_user.all.each do |attire| %>
+      <tr>
+        <td><%= count %></td>
+        <td><%= link_to attire.title, attire_path(attire.id) %></td>
+        <td><%= link_to number_to_euro(attire.price) , attire_path(attire.id) %></td>
+        <% if !attire.is_sold? %>
           <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
           <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
         <% else %>
           <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
-      <% end%>
-    </tr>
-    <% count += 1 %><% end %>
+        <% end%>
+      </tr>
+      <% count += 1 %><% end %>
+      <% if @attire_by_user.length == 0 %>
+        <tr>
+          <td></td><td colspan="4"><i> Tu n'as pas encore enregistré des vêtements dans ton Dressing !</i></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
   <hr>
@@ -45,18 +50,21 @@
         <td><%= link_to attire.title, attire_path(attire.id) %></td>
         <td><%= link_to number_to_euro(attire.price), attire_path(attire.id) %></td>
         <% if !attire.is_sold? %>
-            <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
-            <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
-          <% else %>
-            <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
+          <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
+          <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+        <% else %>
+          <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
         <% end%>
       </tr>
       <% count += 1 %><% end %>
-
+      <% if @attire_by_user_to_sell.length == 0 %>
+        <tr>
+          <td></td><td colspan="4"><i> Tu n'as pas encore enregistré des vêtements à vendre !</i></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
-    <hr>
-
+  <hr>
   <table class="table">
     <thead>
       <tr>
@@ -69,20 +77,52 @@
     </thead>
     <tbody>
       <% count = 1 %>
-        <% @attire_by_user_to_lend.all.each do |attire| %>
+      <% @attire_by_user_to_lend.all.each do |attire| %>
       <tr>
         <td><%= count %></td>
         <td><%= link_to attire.title, attire_path(attire.id) %></td>
         <td><%= link_to number_to_euro(attire.price), attire_path(attire.id) %></td>
         <% if !attire.is_sold? %>
-            <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
-            <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
-          <% else %>
-            <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
+          <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
+          <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+        <% else %>
+          <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
         <% end%>
       </tr>
       <% count += 1 %><% end %>
-
+      <% if @attire_by_user_to_lend.length == 0 %>
+        <tr>
+          <td></td><td colspan="4"><i> Tu n'as pas encore enregistré des vêtements à prêter !</i></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <hr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tes achats</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Date</th>
+        <th scope="col">Reçu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% count = 1 %>
+      <% @items_purchased.all.each do |purchased| %>
+      <tr>
+        <td><%= count %></td>
+        <td><%= link_to purchased.attire.title, attire_path(purchased.attire.id) %></td>
+        <td><%= link_to number_to_euro(purchased.attire.price), attire_path(purchased.attire.id) %></td>
+        <td><%= link_to purchased.created_at.to_time.strftime('%d/%m/%Y'), attire_path(purchased.attire.id) %></td>
+        <td><%= link_to "voir reçu", purchased.order.receipt %></td>
+      <% count += 1 %><% end %>
+      <% if @items_purchased.length == 0 %>
+        <tr>
+          <td></td><td colspan="4"><i> Tu n'as pas encore acheté des vêtements !</i></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

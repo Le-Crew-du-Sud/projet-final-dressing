@@ -33,7 +33,8 @@ class ChargesController < ApplicationController
       address: params[:address],
       city: params[:city],
       phone_number: params[:phone_number],
-      email: params[:email]
+      email: params[:email],
+      receipt: @charge.receipt_url,
       )
 
     @to_order.update(order_id: @pre_order.id)
