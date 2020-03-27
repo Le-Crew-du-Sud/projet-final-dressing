@@ -32,6 +32,7 @@ class ChargesController < ApplicationController
       last_name: params[:last_name],
       address: params[:address],
       city: params[:city],
+      postcode: params[:postcode],
       phone_number: params[:phone_number],
       email: params[:email],
       receipt: @charge.receipt_url,
