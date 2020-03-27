@@ -56,10 +56,10 @@
         <p>Le total de ton panier s'élève à <%= number_to_euro(@sum) %></p>
       </div>
       <%= if @cart.length > 0
-        link_to "Checkout", new_charge_path, class:'btn', style:'margin-top: auto;'
+        link_to "Payer", new_charge_path, class:'btn essence-btn', style:'margin-top: auto;'
         end %>
 
-        <div class="col-md-12 mb-3">
+        <div class="col-md-12 mb-3" style="margin-bottom: 150px !important;">
           <%= link_to 'Continuer mes achats', "/" %>
         </div>
     </div>
