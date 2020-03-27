@@ -37,20 +37,21 @@
           <p>Utilisateur depuis le:
             <%= @user.created_at.to_time.strftime('%d/%m/%Y %H:%M:%S') %>
           </p>
-        
+
           <% if @user.id == current_user.id %>
             <%= link_to 'Éditer mon profil',edit_user_registration_path, class:"btn essence-btn" %>
           <% end %>
 
         </div>
       </div>
-
       <% if @user.id == current_user.id && current_user.is_admin == true %>
         <%= render 'show_admin_partial' %>
       <% elsif @user.id == current_user.id %>
         <%= render 'show_user_partial' %>
       <% end %>
-
+      <div class="col-12 mt-3 ml-3 mb-3" style="margin-bottom: 150px !important;">
+        <%= link_to "Retour", :back %>
+      </div>
     </div>
   </div>
 </div>
