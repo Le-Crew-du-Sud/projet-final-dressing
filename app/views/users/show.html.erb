@@ -48,6 +48,8 @@
         <%= render 'show_admin_partial' %>
       <% elsif @user.id == current_user.id %>
         <%= render 'show_user_partial' %>
+      <% else %>
+        <%= render 'show_user_dressing' %>
       <% end %>
       <div class="col-12 mt-3 ml-3 mb-3" style="margin-bottom: 150px !important;">
         <%= link_to "Retour", :back %>
