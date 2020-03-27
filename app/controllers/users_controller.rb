@@ -37,7 +37,8 @@ class UsersController < ApplicationController
   end
 
   def search
-    @search_result = User.where("LOWER(CONCAT_WS(' ',first_name,last_name,email)) LIKE LOWER(?)", "%" + params[:q] + "%")
+    @search_result_user = User.where("LOWER(CONCAT_WS(' ',first_name,last_name,email)) LIKE LOWER(?)", "%" + params[:q] + "%")
+    @search_result_attire = Attire.where("LOWER(CONCAT_WS(' ',title,description)) LIKE LOWER(?)", "%" + params[:q] + "%")
   end
 
   def cu_admin
