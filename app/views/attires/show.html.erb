@@ -17,7 +17,7 @@
               <%= @attire.description %>
             </div>
             <div class="col-md-6 mb-3">
-            <p><%= @attire.price %>€</p>
+            <p><%= number_to_euro(@attire.price) %></p>
             </div>
             <div class="col-6">
             <% if user_signed_in? %>

@@ -25,8 +25,8 @@
               <%= f.text_area :about_me, autofocus: true, class:"form-control" %>
             </div>
             <div class="col-12 mb-3">
-              <%= f.label "ville" %><br/>
-              <%= f.text_field :city_id, autofocus: true, class:"form-control" %>
+              <%= f.label "Ville" %><br/><br>
+              <%= f.collection_select :city_id, City.all, :id, :town, class:"form-control" %>
             </div>
             <div class="col-12 mb-3">
               <%= f.label "avatar" %><br/>

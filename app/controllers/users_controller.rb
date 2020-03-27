@@ -14,9 +14,9 @@ class UsersController < ApplicationController
     @all_orders = Order.all
     @all_situations = Situation.all
     @all_sizes = Size.all
-    @attire_by_user = @user.attires #Attire.where(owner_id: @user)
-    @attire_by_user_to_lend = Attire.where("owner_id = ? AND situation_id = ?", @user, 4)
-    @attire_by_user_to_sell = Attire.where("owner_id = ? AND situation_id = ?", @user, 3)
+    @attire_by_user = @user.attires
+    @attire_by_user_to_lend = @user.attires.where(situation_id: 4)
+    @attire_by_user_to_sell = @user.attires.where(situation_id: 3)
   end
 
   def index
