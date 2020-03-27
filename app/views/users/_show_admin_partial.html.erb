@@ -1,259 +1,309 @@
-<div class="col-12">
-  <table class="table">
-    <h5>Utilisateurs</h5>
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Prénoms</th>
-        <th scope="col">Noms</th>
-        <th scope="col">Supprimer</th>
-        <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @all_users.all.each do |all_users| %>
-        <tr>
-          <% admin = "Admin" %>
-          <td><%= all_users.id %></td>
-          <td><%= link_to all_users.first_name, user_path(all_users.id) %></td>
-          <td><%= link_to all_users.last_name, user_path(all_users.id) %></td>
-          <td><%= unless all_users.id == current_user.id
-              link_to "Supprimer", user_path(all_users.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}
-            end %>
-          </td>
-          <td><%= all_users.is_admin ? "admin" : "user" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <hr>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Montant</th>
-        <th scope="col">Stripe ID</th>
-        <th scope="col">ID Acheteur</th>
-        <th scope="col">ID Item</th>
-      </tr>
-    </thead>
-      <h5>Commandes</h5>
-    <tbody>
-      <% @all_orders.all.each do |all_orders| %>
-        <tr>
-          <td><%= all_orders.id %></td>
-          <td><%= number_to_euro(all_orders.sold_price/100) %></td>
-          <td><%= all_orders.stripe_customer_id %></td>
-          <td><%= link_to all_orders.customers.collect(&:id)[0], user_path(all_orders.customers.collect(&:id)[0]) %></td>
-          <td><%= link_to all_orders.attires.collect(&:id)[0], attire_path(all_orders.attires.collect(&:id)[0]) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <hr>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Tous les items en BDD</th>
-        <th scope="col">User ID</th>
-        <th scope="col">Status</th>
-        <th scope="col">Prix</th>
-        <th scope="col">Modifier</th>
-        <th scope="col">Supprimer</th>
-      </tr>
-    </thead>
-      <h5>Vêtements mis en ligne</h5>
-    <tbody>
-      <% @attire.all.each do |attire| %>
-        <tr>
-          <td><%= attire.id %></td>
-          <td><%= link_to attire.title, attire_path(attire.id) %></td>
-          <td><%= link_to attire.owner_id, attire_path(attire.id) %></td>
-          <td><%= link_to attire.situation.scope, attire_path(attire.id) %></td>
-          <td><%= link_to number_to_euro(attire.price), attire_path(attire.id) %></td>
-          <% if !attire.is_sold %>
-            <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
-          <% else %>
-            <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
-          <% end %>
-          <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <hr>
+<div class="container">
   <div class="row">
-    <div class="col-4">
-        <h5>Catégories</h5>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Catégories</th>
-            <th scope="col">Qté d'objets</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @all_cats.all.each do |all_cats| %>
-            <tr>
-              <td><%= all_cats.id %></td>
-              <td><%= all_cats.kind%></td>
-              <td><%= Attire.where(category_id: all_cats.id).count %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-4">
-      <h5>Marques</h5>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Marques</th>
-            <th scope="col">Qté d'objets</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @all_brands.all.each do |all_brands| %>
-            <tr>
-              <td><%= all_brands.id %></td>
-              <td><%= all_brands.trademark%></td>
-              <td><%= Attire.where(brand_id: all_brands.id).count %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-4">
-      <h5>Villes</h5>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Villes</th>
-            <th scope="col">Nb de Users par ville</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @all_cities.all.each do |all_cities| %>
-            <tr>
-              <td><%= all_cities.id %></td>
-              <td><%= all_cities.town%></td>
-              <td><%= User.where(city_id: all_cities.id).count %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-4">
-      <h5>Couleurs</h5>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Couleurs</th>
-            <th scope="col">Qté d'objets</th>
+    <div class="col-2">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-users-list" data-toggle="list" href="#list-users" role="tab" aria-controls="users">
+          Utilisateurs
+        </a>
+        <a class="list-group-item list-group-item-action" id="list-orders-list" data-toggle="list" href="#list-orders" role="tab" aria-controls="orders">
+          Commandes
+        </a>
+        <a class="list-group-item list-group-item-action" id="list-items-list" data-toggle="list" href="#list-items" role="tab" aria-controls="items">
+          Items
+        </a>
+        <a class="list-group-item list-group-item-action" id="list-categories-list" data-toggle="list" href="#list-categories" role="tab" aria-controls="categories">
+          Catégories
+        </a>
+        <a class="list-group-item list-group-item-action" id="list-brands-list" data-toggle="list" href="#list-brands" role="tab" aria-controls="brands">
+          Marques
+        </a>
 
-          </tr>
-        </thead>
-        <tbody>
-          <% @all_colours.all.each do |all_colours| %>
-            <tr>
-              <td><%= all_colours.id %></td>
-              <td><%= all_colours.tint%></td>
-              <td><%= Attire.where(colour_id: all_colours.id).count %></td>
+        <a class="list-group-item list-group-item-action" id="list-cities-list" data-toggle="list" href="#list-cities" role="tab" aria-controls="cities">
+          Villes
+        </a>
+        <a class="list-group-item list-group-item-action" id="list-colours-list" data-toggle="list" href="#list-colours" role="tab" aria-controls="colours">
+          Couleurs
+        </a>
+        <a class="list-group-item list-group-item-action" id="list-status-list" data-toggle="list" href="#list-status" role="tab" aria-controls="status">
+          État des vêtements
+        </a>
+        <a class="list-group-item list-group-item-action" id="list-fabrics-list" data-toggle="list" href="#list-fabrics" role="tab" aria-controls="fabrics">
+          Matières
+        </a>
+        <a class="list-group-item list-group-item-action" id="list-sizes-list" data-toggle="list" href="#list-sizes" role="tab" aria-controls="sizes">
+          Tailles
+        </a>
+        <a class="list-group-item list-group-item-action" id="list-situations-list" data-toggle="list" href="#list-situations" role="tab" aria-controls="situations">
+          Statut en ligne
+        </a>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="list-users" role="tabpanel" aria-labelledby="list-users-list">
+          <table class="table">
 
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-4">
-      <h5>État des vêtements</h5>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Condition</th>
-            <th scope="col">Qté d'objets</th>
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Prénoms</th>
+                <th scope="col">Noms</th>
+                <th scope="col">Supprimer</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @all_users.all.each do |all_users| %>
+                <tr>
+                  <% admin = "Admin" %>
+                    <td><%= all_users.id %></td>
+                    <td><%= link_to all_users.first_name, user_path(all_users.id) %></td>
+                    <td><%= link_to all_users.last_name, user_path(all_users.id) %></td>
+                    <td>
+                      <% unless all_users.id == current_user.id %>
+                        <%= link_to "Supprimer", user_path(all_users.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"} %>
+                      <% end %>
+                    </td>
+                    <td><%= all_users.is_admin ? "admin" : "user" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="list-orders" role="tabpanel" aria-labelledby="list-orders-list">
+            <table class="table">
 
-          </tr>
-        </thead>
-        <tbody>
-          <% @all_conditions.all.each do |all_conditions| %>
-            <tr>
-              <td><%= all_conditions.id %></td>
-              <td><%= all_conditions.state%></td>
-              <td><%= Attire.where(condition_id: all_conditions.id).count %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Montant</th>
+                  <th scope="col">Stripe ID</th>
+                  <th scope="col">ID Acheteur</th>
+                  <th scope="col">ID Item</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @all_orders.all.each do |all_orders| %>
+                  <tr>
+                    <td><%= all_orders.id %></td>
+                    <td><%= number_to_euro(all_orders.sold_price/100) %></td>
+                    <td><%= all_orders.stripe_customer_id %></td>
+                    <td><%= link_to all_orders.customers.collect(&:id)[0], user_path(all_orders.customers.collect(&:id)[0]) %></td>
+                    <td><%= link_to all_orders.attires.collect(&:id)[0], attire_path(all_orders.attires.collect(&:id)[0]) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="list-items" role="tabpanel" aria-labelledby="list-items-list">
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Tous les items en BDD</th>
+                  <th scope="col">User ID</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Prix</th>
+                  <th scope="col">Modifier</th>
+                  <th scope="col">Supprimer</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @attire.all.each do |attire| %>
+                  <tr>
+                    <td><%= attire.id %></td>
+                    <td><%= link_to attire.title, attire_path(attire.id) %></td>
+                    <td><%= link_to attire.owner_id, attire_path(attire.id) %></td>
+                    <td><%= link_to attire.situation.scope, attire_path(attire.id) %></td>
+                    <td><%= link_to number_to_euro(attire.price), attire_path(attire.id) %></td>
+                    <% if !attire.is_sold %>
+                      <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
+                    <% else %>
+                      <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
+                    <% end %>
+                    <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="list-categories" role="tabpanel" aria-labelledby="list-categories-list">
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Catégories</th>
+                  <th scope="col">Qté d'objets</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @all_cats.all.each do |all_cats| %>
+                  <tr>
+                    <td><%= all_cats.id %></td>
+                    <td><%= all_cats.kind%></td>
+                    <td><%= Attire.where(category_id: all_cats.id).count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="list-brands" role="tabpanel" aria-labelledby="list-brands-list">
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Marques</th>
+                  <th scope="col">Qté d'objets</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @all_brands.all.each do |all_brands| %>
+                  <tr>
+                    <td><%= all_brands.id %></td>
+                    <td><%= all_brands.trademark%></td>
+                    <td><%= Attire.where(brand_id: all_brands.id).count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="list-cities" role="tabpanel" aria-labelledby="list-cities-list">
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Villes</th>
+                  <th scope="col">Nb de Users par ville</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @all_cities.all.each do |all_cities| %>
+                  <tr>
+                    <td><%= all_cities.id %></td>
+                    <td><%= all_cities.town%></td>
+                    <td><%= User.where(city_id: all_cities.id).count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="list-colours" role="tabpanel" aria-labelledby="list-colours-list">
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Couleurs</th>
+                  <th scope="col">Qté d'objets</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <% @all_colours.all.each do |all_colours| %>
+                  <tr>
+                    <td><%= all_colours.id %></td>
+                    <td><%= all_colours.tint%></td>
+                    <td><%= Attire.where(colour_id: all_colours.id).count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="list-status" role="tabpanel" aria-labelledby="list-status-list">
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Condition</th>
+                  <th scope="col">Qté d'objets</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @all_conditions.all.each do |all_conditions| %>
+                  <tr>
+                    <td><%= all_conditions.id %></td>
+                    <td><%= all_conditions.state%></td>
+                    <td><%= Attire.where(condition_id: all_conditions.id).count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-pane fade" id="list-fabrics" role="tabpanel" aria-labelledby="list-fabrics-list">
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Matières</th>
+                  <th scope="col">Qté d'objets</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @all_fabrics.all.each do |all_fabrics| %>
+                  <tr>
+                    <td><%= all_fabrics.id %></td>
+                    <td><%= all_fabrics.variety%></td>
+                    <td><%= Attire.where(fabric_id: all_fabrics.id).count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-pane fade" id="list-sizes" role="tabpanel" aria-labelledby="list-sizes-list">
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Tailles</th>
+                  <th scope="col">Qté d'objets</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @all_sizes.all.each do |all_sizes| %>
+                  <tr>
+                    <td><%= all_sizes.id %></td>
+                    <td><%= all_sizes.measure%></td>
+                    <td><%= Attire.where(size_id: all_sizes.id).count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="list-situations" role="tabpanel" aria-labelledby="list-situations-list">
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Statut</th>
+                  <th scope="col">Qté d'objets</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @all_situations.all.each do |all_situations| %>
+                  <tr>
+                    <td><%= all_situations.id %></td>
+                    <td><%= all_situations.scope%></td>
+                    <td><%= Attire.where(situation_id: all_situations.id).count %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
     </div>
-    <div class="col-4">
-      <h5>Matières</h5>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Matières</th>
-            <th scope="col">Qté d'objets</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @all_fabrics.all.each do |all_fabrics| %>
-            <tr>
-              <td><%= all_fabrics.id %></td>
-              <td><%= all_fabrics.variety%></td>
-              <td><%= Attire.where(fabric_id: all_fabrics.id).count %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-4">
-      <h5>Tailles</h5>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Tailles</th>
-            <th scope="col">Qté d'objets</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @all_sizes.all.each do |all_sizes| %>
-            <tr>
-              <td><%= all_sizes.id %></td>
-              <td><%= all_sizes.measure%></td>
-              <td><%= Attire.where(size_id: all_sizes.id).count %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-4">
-      <h5>Statut</h5>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Statut</th>
-            <th scope="col">Qté d'objets</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @all_situations.all.each do |all_situations| %>
-            <tr>
-              <td><%= all_situations.id %></td>
-              <td><%= all_situations.scope%></td>
-              <td><%= Attire.where(situation_id: all_situations.id).count %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+
   </div>
-</div>
