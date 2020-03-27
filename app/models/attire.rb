@@ -1,6 +1,10 @@
 class Attire < ApplicationRecord
   #activestorage
   has_many_attached :pictures
+  
+  validates :title,
+  presence: true,
+  length: { minimum: 3, maximum: 14, message: "title should be within 3 and 14 characters" }
 
   belongs_to :situation, class_name: "Situation"
   belongs_to :condition, class_name: "Condition"
