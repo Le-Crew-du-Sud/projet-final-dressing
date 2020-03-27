@@ -16,8 +16,12 @@
       <td><%= count %></td>
       <td><%= link_to attire.title, attire_path(attire.id) %></td>
       <td><%= link_to number_to_euro(attire.price) , attire_path(attire.id) %></td>
-      <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
-      <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+      <% if !attire.is_sold? %>
+          <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
+          <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+        <% else %>
+          <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
+      <% end%>
     </tr>
     <% count += 1 %><% end %>
     </tbody>
@@ -40,8 +44,12 @@
         <td><%= count %></td>
         <td><%= link_to attire.title, attire_path(attire.id) %></td>
         <td><%= link_to number_to_euro(attire.price), attire_path(attire.id) %></td>
-        <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
-        <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+        <% if !attire.is_sold? %>
+            <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
+            <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+          <% else %>
+            <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
+        <% end%>
       </tr>
       <% count += 1 %><% end %>
 
@@ -66,8 +74,12 @@
         <td><%= count %></td>
         <td><%= link_to attire.title, attire_path(attire.id) %></td>
         <td><%= link_to number_to_euro(attire.price), attire_path(attire.id) %></td>
-        <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
-        <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+        <% if !attire.is_sold? %>
+            <td><%= link_to "Modifier", edit_attire_path(attire.id), class:"btn btn-outline-info btn-sm" %></td>
+            <td><%= link_to "Supprimer", attire_path(attire.id), class:"btn btn-outline-danger btn-sm", data:{method: "DELETE"}%></td>
+          <% else %>
+            <td><input type="submit" value="Vendu" disabled="disabled" class="btn btn-outline-secondary btn-sm"></td>
+        <% end%>
       </tr>
       <% count += 1 %><% end %>
 

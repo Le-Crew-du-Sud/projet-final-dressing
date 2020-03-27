@@ -2,7 +2,7 @@ class AttiresController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @attires = Attire.with_attached_pictures.order(updated_at: :desc).where(is_sold: false)
+    @attires = Attire.with_attached_pictures.order(updated_at: :desc).where(is_sold: false, situation_id: 3)
   end
 
   def create

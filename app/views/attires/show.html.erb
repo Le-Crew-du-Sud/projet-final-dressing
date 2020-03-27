@@ -35,12 +35,14 @@
             <% end %>
             </div>
             <% if (user_signed_in? && ((@attire.owner_id == current_user.id) || current_user.is_admin == true) ) %>
-              <div class="col-12 mb-3">
-                <%= link_to "Éditer ce vêtement", edit_attire_path(@attire.id), class:"btn essence-btn" %>
-              </div>
-              <div class="col-12 mb-3">
-                <%= link_to "Supprimer ce vêtement", attire_path(@attire.id), class:"btn essence-btn", data:{method: "DELETE"} %>
-              </div>
+              <% if !@attire.is_sold? %>
+                <div class="col-12 mb-3">
+                  <%= link_to "Éditer ce vêtement", edit_attire_path(@attire.id), class:"btn essence-btn" %>
+                </div>
+                <div class="col-12 mb-3">
+                  <%= link_to "Supprimer ce vêtement", attire_path(@attire.id), class:"btn essence-btn", data:{method: "DELETE"} %>
+                </div>
+              <% end%>
             <% end %>
           </div>
     </div>
