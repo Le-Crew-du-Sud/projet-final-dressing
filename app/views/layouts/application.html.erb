@@ -19,11 +19,11 @@
     <%= render 'shared/footer_partial' %>
     <% # <!-- Retour console (veuillez ne pas effacer - @Fernando) --> %>
       <% if user_signed_in? %>
-        <% puts "\n  >> CU is_admin? #{current_user.is_admin}".red %>
-        <% puts "  >> CU email     #{current_user.email}".red %>
-        <% puts "  >> CU id        #{current_user.id}\n".red %>
+        <% puts "\n  >> CU is_admin? #{current_user.is_admin}" %>
+        <% puts "  >> CU email     #{current_user.email}" %>
+        <% puts "  >> CU id        #{current_user.id}\n" %>
       <% else %>
-        <% puts "\n  >> CU is not signed_in\n".red %>
+        <% puts "\n  >> CU is not signed_in\n" %>
       <% end %>
     <% # <!-- end Retour console --> %>
     <%= javascript_include_tag 'application' %>

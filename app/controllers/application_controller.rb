@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   def cart_number
     if user_signed_in?
       @cart_number = current_user.carts.where(order_id: 0).length
-      puts "cart_number = #{@cart_number}".red
     end
   end
 end

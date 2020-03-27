@@ -96,31 +96,31 @@ print "."
 
 a = Attire.create(
       title: "Pantalon Celio", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
-puts ">>> #{a.errors.messages}".red
+puts ">>> #{a.errors.messages}"
 b = Attire.create(
       title: "T-shirt Diesel", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
-puts ">>> #{b.errors.messages}".red
+puts ">>> #{b.errors.messages}"
 c = Attire.create(
       title: "Short de sport Décathlon", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
-puts ">>> #{c.errors.messages}".red
+puts ">>> #{c.errors.messages}"
 d = Attire.create(
       title: "Robe Le temps des cerises", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
-puts ">>> #{d.errors.messages}".red
+puts ">>> #{d.errors.messages}"
 e = Attire.create(
       title: "Jean Levis", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
-puts ">>> #{e.errors.messages}".red
+puts ">>> #{e.errors.messages}"
 f = Attire.create(
       title: "Chemise Levis", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
-puts ">>> #{f.errors.messages}".red
+puts ">>> #{f.errors.messages}"
 g = Attire.create(
       title: "Hoodie NY", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
-puts ">>> #{g.errors.messages}".red
+puts ">>> #{g.errors.messages}"
 h = Attire.create(
       title: "Casquette Lakers", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
-puts ">>> #{h.errors.messages}".red
+puts ">>> #{h.errors.messages}"
 i = Attire.create(
       title: "Chemise Zara", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Category.all.sample.id, size_id: Size.all.sample.id, colour_id: Colour.all.sample.id, fabric_id: Fabric.all.sample.id, situation_id: Situation.all.sample.id, condition_id: Condition.all.sample.id, brand_id: Brand.all.sample.id, owner_id: (2..10).to_a.sample)
-      puts ">>> #{i.errors.messages}".red
+      puts ">>> #{i.errors.messages}"
 
 
 puts "Seed generated!"
