@@ -50,8 +50,9 @@ group :development do
   # manually added gems to help development
   gem "better_errors"
   gem "binding_of_caller"
-  gem 'shotgun'
+  # gem 'shotgun'
   gem 'letter_opener'
+  gem 'colorize'
 end
 
 group :test do
@@ -66,7 +67,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # manually added gems to production
-gem 'colorize'
 gem 'table_print'
 gem 'faker'
 gem 'dotenv-rails'
@@ -88,4 +88,3 @@ gem 'owlcarousel-rails'
 
 ## ActiveStorage companion
 gem "image_processing", "~> 1.2"
-
