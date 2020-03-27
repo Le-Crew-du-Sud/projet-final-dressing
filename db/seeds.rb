@@ -91,29 +91,30 @@ print "."
 Attire.create(title: "Chemise Zara", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
 print "."
 
-Attire.create(
+a = Attire.create(
       title: "Pantalon Celio", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
-
-Attire.create(
+puts ">>> #{a.errors.messages}".red
+b = Attire.create(
       title: "T-shirt Diesel", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
-Attire.create(
+puts ">>> #{b.errors.messages}".red
+c = Attire.create(
       title: "Short de sport Décathlon", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
-
-Attire.create(
+puts ">>> #{c.errors.messages}".red
+d = Attire.create(
       title: "Robe Le temps des cerises", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
-
-Attire.create(
+puts ">>> #{d.errors.messages}".red
+e = Attire.create(
       title: "Jean Levis", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
-
-Attire.create(
+puts ">>> #{e.errors.messages}".red
+f = Attire.create(
       title: "Chemise Levis", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
-
-Attire.create(
+puts ">>> #{f.errors.messages}".red
+g = Attire.create(
       title: "Hoodie NY", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
-
-Attire.create(
+puts ">>> #{g.errors.messages}".red
+h = Attire.create(
       title: "Casquette Lakers", description: Faker::ChuckNorris.fact, price:Faker::Number.within(range: 1..999), category_id: Faker::Number.between(from: 1, to: 4), size_id: Faker::Number.between(from: 1, to: 3), colour_id: Faker::Number.between(from: 1, to: 5), fabric_id: Faker::Number.between(from: 1, to: 5), situation_id: Faker::Number.between(from: 1, to: 4), condition_id: Faker::Number.between(from: 1, to: 2), brand_id: Faker::Number.between(from: 1, to: 7), owner_id: Faker::Number.between(from: 2, to: 11))
-print "."
+puts ">>> #{h.errors.messages}".red
 
 
 puts "Seed generated!"
