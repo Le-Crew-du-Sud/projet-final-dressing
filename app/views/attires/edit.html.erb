@@ -21,35 +21,35 @@
           </div>
           <div class="col-3 mb-3">
             <%= label_tag 'Prix (€)' %>
-            <%= number_field_tag 'price', @attire.price, class:"form-control" %>
+            <%= number_field_tag 'price', number_to_currency(@attire.price).to_f, :step => 0.01, class:"form-control" %>
           </div><br>
           <div class="col-2 mb-3">
             <%= label_tag 'Catégorie' %><br>
-            <%= select_tag(:category_id, options_for_select(@category_array)) %>
+            <%= select_tag(:category_id, options_for_select(@category_array, @attire.category_id)) %>
           </div>
           <div class="col-2 mb-3">
             <%= label_tag 'Taille' %><br>
-            <%= select_tag(:size_id, options_for_select(@size_array)) %><br>
+            <%= select_tag(:size_id, options_for_select(@size_array, @attire.size_id)) %><br>
           </div><br>
           <div class="col-2 mb-3">
             <%= label_tag 'Couleur' %><br>
-            <%= select_tag(:colour_id, options_for_select(@colour_array)) %><br>
+            <%= select_tag(:colour_id, options_for_select(@colour_array, @attire.colour_id)) %><br>
           </div><br>
           <div class="col-2 mb-3">
             <%= label_tag 'Matière' %><br>
-            <%= select_tag(:fabric_id, options_for_select(@fabric_array)) %><br>
+            <%= select_tag(:fabric_id, options_for_select(@fabric_array, @attire.fabric_id)) %><br>
           </div><br>
           <div class="col-3 mb-3">
             <%= label_tag 'Disponibilité' %><br>
-            <%= select_tag(:situation_id, options_for_select(@situation_array)) %><br>
+            <%= select_tag(:situation_id, options_for_select(@situation_array, @attire.situation_id)) %><br>
           </div><br>
           <div class="col-3 mb-3">
             <%= label_tag 'Etat' %><br>
-            <%= select_tag(:condition_id, options_for_select(@condition_array)) %><br>
+            <%= select_tag(:condition_id, options_for_select(@condition_array, @attire.condition_id)) %><br>
           </div><br>
           <div class="col-3 mb-50">
             <%= label_tag 'Marque' %><br>
-            <%= select_tag(:brand_id, options_for_select(@brand_array)) %><br>
+            <%= select_tag(:brand_id, options_for_select(@brand_array, @attire.brand_id)) %><br>
           </div><br>
           <div class="col-md-12 mb-3">
             <% if !@attire.is_sold %>
