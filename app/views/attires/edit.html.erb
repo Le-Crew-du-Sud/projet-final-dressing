@@ -1,75 +1,87 @@
-<div class="checkout_area section-padding-80">
-  <div class="container">
-    <div class="row">
-      <% if flash[:alert] %>
-        <div class="alert alert-danger col-12" role="alert"><%= flash[:alert] %></div>
-      <% end %>
-      <div class="cart-page-heading mb-30">
-        <h5>Éditer un vêtement</h5>
-      </div>
-      <%= form_tag url_for(action: 'update'), method: "patch" do %>
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<% if @attire.owner == current_user || current_user.is_admin == true %>
+  <div class="checkout_area section-padding-80">
+    <div class="container">
       <div class="row">
-        <div class="col-12 mb-3">
-          <%= label_tag 'Nom du vêtement' %>
-          <%= text_field_tag 'title', @attire.title, class:"form-control"%>
+        <% if flash[:alert] %>
+          <div class="alert alert-danger col-12" role="alert"><%= flash[:alert] %></div>
+        <% end %>
+        <div class="cart-page-heading mb-30">
+          <h5>Éditer un vêtement</h5>
         </div>
-        <div class="col-12 mb-3">
-          <%= label_tag 'Description' %>
-          <%= text_area_tag 'description', @attire.description, class:"form-control" %>
-        </div>
-        <div class="col-3 mb-3">
-          <%= label_tag 'Prix (€)' %>
-          <%= number_field_tag 'price', @attire.price, class:"form-control" %>
-        </div><br>
-        <div class="col-2 mb-3">
-          <%= label_tag 'Catégorie' %><br>
-          <%= select_tag(:category_id, options_for_select(@category_array)) %>
-        </div>
-        <div class="col-2 mb-3">
-          <%= label_tag 'Taille' %><br>
-          <%= select_tag(:size_id, options_for_select(@size_array)) %><br>
-        </div><br>
-        <div class="col-2 mb-3">
-          <%= label_tag 'Couleur' %><br>
-          <%= select_tag(:colour_id, options_for_select(@colour_array)) %><br>
-        </div><br>
-        <div class="col-2 mb-3">
-          <%= label_tag 'Matière' %><br>
-          <%= select_tag(:fabric_id, options_for_select(@fabric_array)) %><br>
-        </div><br>
-        <div class="col-3 mb-3">
-          <%= label_tag 'Disponibilité' %><br>
-          <%= select_tag(:situation_id, options_for_select(@situation_array)) %><br>
-        </div><br>
-        <div class="col-3 mb-3">
-          <%= label_tag 'Etat' %><br>
-          <%= select_tag(:condition_id, options_for_select(@condition_array)) %><br>
-        </div><br>
-        <div class="col-3 mb-50">
-          <%= label_tag 'Marque' %><br>
-          <%= select_tag(:brand_id, options_for_select(@brand_array)) %><br>
-        </div><br>
-        <div class="col-md-12 mb-3">
-          <%= submit_tag "Modifier", class:"btn essence-btn"%>
-        </div>
-          <% end %>
-        <div class="">
-          <%= form_tag url_for(action: 'update_pictures'), multipart: true, method: 'patch' do %>
-          <%= hidden_field_tag :id, @attire.id %>
-          <%= file_field_tag 'pictures[]', multiple: true, accept: 'image/png,image/jpeg'%>
-          <%= submit_tag 'Ajouter images', class: 'btn essence-btn mt-3 col-6' %>
-          <% end %>
-        </div>
-        <div class="d-flex flex-row flex-wrap mt-50">
-          <% (0...@attire.pictures.count).each do |image| %>
-            <div class="ml-3"><%= image_tag(@attire.pictures[image].variant(resize: '200x200!').processed, class:"img-fluid") %><br/>
+        <%= form_tag url_for(action: 'update'), method: "patch" do %>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <%= label_tag 'Nom du vêtement' %>
+            <%= text_field_tag 'title', @attire.title, class:"form-control"%>
+          </div>
+          <div class="col-12 mb-3">
+            <%= label_tag 'Description' %>
+            <%= text_area_tag 'description', @attire.description, class:"form-control" %>
+          </div>
+          <div class="col-3 mb-3">
+            <%= label_tag 'Prix (€)' %>
+            <%= number_field_tag 'price', @attire.price, class:"form-control" %>
+          </div><br>
+          <div class="col-2 mb-3">
+            <%= label_tag 'Catégorie' %><br>
+            <%= select_tag(:category_id, options_for_select(@category_array)) %>
+          </div>
+          <div class="col-2 mb-3">
+            <%= label_tag 'Taille' %><br>
+            <%= select_tag(:size_id, options_for_select(@size_array)) %><br>
+          </div><br>
+          <div class="col-2 mb-3">
+            <%= label_tag 'Couleur' %><br>
+            <%= select_tag(:colour_id, options_for_select(@colour_array)) %><br>
+          </div><br>
+          <div class="col-2 mb-3">
+            <%= label_tag 'Matière' %><br>
+            <%= select_tag(:fabric_id, options_for_select(@fabric_array)) %><br>
+          </div><br>
+          <div class="col-3 mb-3">
+            <%= label_tag 'Disponibilité' %><br>
+            <%= select_tag(:situation_id, options_for_select(@situation_array)) %><br>
+          </div><br>
+          <div class="col-3 mb-3">
+            <%= label_tag 'Etat' %><br>
+            <%= select_tag(:condition_id, options_for_select(@condition_array)) %><br>
+          </div><br>
+          <div class="col-3 mb-50">
+            <%= label_tag 'Marque' %><br>
+            <%= select_tag(:brand_id, options_for_select(@brand_array)) %><br>
+          </div><br>
+          <div class="col-md-12 mb-3">
+            <% if !@attire.is_sold %>
+              <%= submit_tag "Modifier", class:"btn essence-btn"%>
+            <% else %>
+              <%= submit_tag "Vendu", disabled: true, class: "btn essence-btn" %>
+            <% end %>
+          </div>
+            <% end %>
+          <div class="">
+            <%= form_tag url_for(action: 'update_pictures'), multipart: true, method: 'patch' do %>
+              <%= hidden_field_tag :id, @attire.id %>
+              <% if !@attire.is_sold %>
+                <%= file_field_tag 'pictures[]', multiple: true, accept: 'image/png,image/jpeg'%>
+                <%= submit_tag 'Ajouter images', class: 'btn essence-btn mt-3 col-6' %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="d-flex flex-row flex-wrap mt-50">
+            <% (0...@attire.pictures.count).each do |image| %>
+              <div class="ml-3"><%= image_tag(@attire.pictures[image].variant(resize: '200x200!').processed, class:"img-fluid") %><br/>
 
-              <%= link_to 'Effacer', picture_path(@attire.pictures[image]), method: :delete, class:"btn", data: { confirm: 'Es-tu sûr?'} %>
-            </div>
-          <% end %>
+                <%= link_to 'Effacer', picture_path(@attire.pictures[image]), method: :delete, class:"btn", data: { confirm: 'Es-tu sûr?'} %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div style="height: 60vh">
+    <div class="alert alert-danger col-12" role="alert"><%= "Tu n'as pas le droit d'acceder ce contenu !" %></div>
+  </div>
+<% end %>
