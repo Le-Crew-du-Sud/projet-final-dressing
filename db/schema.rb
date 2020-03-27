@@ -134,8 +134,6 @@ ActiveRecord::Schema.define(version: 2020_03_23_145339) do
   create_table "orders", force: :cascade do |t|
     t.float "sold_price", default: 0.0, null: false
     t.string "stripe_customer_id", default: "", null: false
-    t.bigint "customer_id"
-    t.bigint "attire_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "first_name"
@@ -145,8 +143,6 @@ ActiveRecord::Schema.define(version: 2020_03_23_145339) do
     t.string "city"
     t.string "phone_number"
     t.string "email"
-    t.index ["attire_id"], name: "index_orders_on_attire_id"
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "situations", force: :cascade do |t|
